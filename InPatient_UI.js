@@ -134,11 +134,13 @@ function personalInfoForm() {
   contentDiv.appendChild(inPPPIForm);
   var resultdiv = document.createElement("div");
   inPPPIForm.appendChild(resultdiv);
+  resultdiv.className="row ";
   resultdiv.style = "display:flex; flex-wrap:wrap; gap:10px;";
 
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
-  leftcol.className = " col-4 px-2 flex:1 0 10rem;";
+  leftcol.className = " col-4 px-2 ";
+  leftcol.style="flex:1 0 10rem; ";
 
   let middleCol = document.createElement("div");
   resultdiv.appendChild(middleCol);
