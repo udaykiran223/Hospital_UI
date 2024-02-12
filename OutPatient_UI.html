@@ -69,34 +69,49 @@
         div.content {
           margin-left: 0;
         }
+        .submitBtnDiv{
+          width: 50%;
+        }
       }
 
-      @media screen and (max-width: 400px) {
+      @media screen and (max-width: 450px) {
+        .sidebar{
+          width: 150%;
+        }
+        #sidebar-div{
+          display: grid;
+          place-items: center;
+        }
         .sidebar a {
           text-align: center;
           float: none;
         }
+       #top-div-content{
+        height: 25vh;
+        overflow-x: scroll;
+       }
+       .submitBtnDiv{
+        width: 25%;
+       }
       }
 
       #top-div {
         /* margin-top: 0.1%; */
         padding-bottom: 0.1%;
         border: 2px solid black;
-        height: 390px;
+        /* height: 390px; */
+        height: 50vh;
         border-bottom: none;
       }
-      .hospital-img1 {
-        height: 380px;
-        width: 49.7%;
-      }
+
       #bottom-div {
         margin-top: 0.1%;
         border: 2px solid rgb(0, 0, 0);
-        height: 385px;
+        /* height: 385px; */
+        height: 50vh;
       }
-      .hospital-img2 {
-        height: 380px;
-        width: 49.7%;
+      .submitBtnDiv{
+        width: 25%;
       }
       td,
       th {

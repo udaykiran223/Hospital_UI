@@ -137,20 +137,23 @@ function personalInfoForm() {
   var resultdiv = document.createElement("div");
   outPPPIForm.appendChild(resultdiv);
   resultdiv.className = "row";
+  resultdiv.style = "display:flex; flex-wrap:wrap; gap:10px;";
+
 
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
   leftcol.className = " col-4 px-2";
+  leftcol.style="flex:1 0 10rem; ";
 
   let middleCol = document.createElement("div");
   resultdiv.appendChild(middleCol);
   middleCol.className = " col-4 px-2";
-  middleCol.style = " padding:2.5% 0 0 0; ";
+  middleCol.style = " padding:2.5% 0 0 0; flex:1 0 10rem;";
 
   let rightcol = document.createElement("div");
   resultdiv.appendChild(rightcol);
   rightcol.className = " col-4 px-2";
-  rightcol.style = " padding:2% 0 0 0; ";
+  rightcol.style = " padding:2% 0 0 0; flex:1 0 10rem; ";
 
   // Patient Type
   // Create label element
@@ -305,12 +308,12 @@ function personalInfoForm() {
   // create a div for submit btn
   let outPPISBDiv = document.createElement("div");
   contentDiv.appendChild(outPPISBDiv);
-  outPPISBDiv.className = " text-center w-50 mx-auto mt-3 ";
+  outPPISBDiv.className = " text-center submitBtnDiv mx-auto mt-3 ";
 
   // Create button element
   const outPPISBtn = document.createElement("button");
   outPPISBtn.type = "submit";
-  outPPISBtn.className = "btn btn-primary bg-primary  w-50";
+  outPPISBtn.className = "btn btn-primary bg-primary  w-100";
   outPPISBtn.id = "patientRegistrationSubmitBtn";
   outPPISBtn.innerText = "Submit";
   outPPISBtn.addEventListener("click", outPPIDetailsSubmit);
@@ -327,21 +330,23 @@ function contactInfoForm() {
   var resultdiv = document.createElement("div");
   outPPCIForm.appendChild(resultdiv);
   resultdiv.className = "row";
+  resultdiv.style = "display:flex; flex-wrap:wrap; gap:10px;";
+
 
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
   leftcol.className = " col-4 px-2";
-  leftcol.style = " padding:2.2% 0 0 0; ";
+  leftcol.style = " padding:2.2% 0 0 0; flex:1 0 10rem;";
 
   let middleCol = document.createElement("div");
   resultdiv.appendChild(middleCol);
   middleCol.className = " col-4 px-2";
-  middleCol.style = " padding:2.2% 0 0 0; ";
+  middleCol.style = " padding:2.2% 0 0 0; flex:1 0 10rem; ";
 
   let rightcol = document.createElement("div");
   resultdiv.appendChild(rightcol);
   rightcol.className = " col-4 px-2";
-  rightcol.style = " padding:2.2% 0 0 0; ";
+  rightcol.style = " padding:2.2% 0 0 0; flex:1 0 10rem; ";
 
   // Patient Phone Number(Alternate Number)
   // Create input element
@@ -467,12 +472,12 @@ function contactInfoForm() {
   // create a div for submit btn
   let outPCISDiv = document.createElement("div");
   contentDiv.appendChild(outPCISDiv);
-  outPCISDiv.className = " text-center w-50 mx-auto mt-3 ";
+  outPCISDiv.className = " text-center submitBtnDiv mx-auto mt-3 ";
 
   // Create button element
   const outPCISBtn = document.createElement("button");
   outPCISBtn.type = "submit";
-  outPCISBtn.className = "btn btn-primary bg-primary  w-50";
+  outPCISBtn.className = "btn btn-primary bg-primary  w-100";
   outPCISBtn.id = "outPatient-healthConcerns-SubmitBtn";
   outPCISBtn.innerText = "Submit";
   outPCISBtn.addEventListener("click", outPCIDetailsSubmit);
@@ -489,16 +494,18 @@ function healthConcernsForm() {
   var resultdiv = document.createElement("div");
   outPPHCForm.appendChild(resultdiv);
   resultdiv.className = "row ";
+  resultdiv.style = "display:flex; flex-wrap:wrap; gap:10px;";
+
 
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
   leftcol.className = " col-6 px-2";
-  leftcol.style = " padding:2.2% 0 0 0; ";
+  leftcol.style = " padding:2.2% 0 0 0; flex:1 0 10rem; ";
 
   let rightcol = document.createElement("div");
   resultdiv.appendChild(rightcol);
   rightcol.className = " col-6 px-2";
-  rightcol.style = " padding:2.2% 0 0 0; ";
+  rightcol.style = " padding:2.2% 0 0 0; flex:1 0 10rem; ";
 
   // Current Problems
   // Create textarea element
@@ -552,12 +559,12 @@ function healthConcernsForm() {
   // create a div for submit btn
   let outPPHCsubmitDiv = document.createElement("div");
   contentDiv.appendChild(outPPHCsubmitDiv);
-  outPPHCsubmitDiv.className = " text-center w-50 mx-auto mt-3 ";
+  outPPHCsubmitDiv.className = " text-center submitBtnDiv mx-auto mt-3 ";
 
   // Create button element
   const outPPHCSBtn = document.createElement("button");
   outPPHCSBtn.type = "submit";
-  outPPHCSBtn.className = "btn btn-primary bg-primary  w-50";
+  outPPHCSBtn.className = "btn btn-primary bg-primary  w-100";
   outPPHCSBtn.id = "outPatient-healthConcerns-SubmitBtn";
   outPPHCSBtn.innerText = "Submit";
   outPPHCSBtn.addEventListener("click", outPHCDetailsSubmit);
@@ -574,16 +581,18 @@ function appointmentsForm() {
   var resultdiv = document.createElement("div");
   outPPAForm.appendChild(resultdiv);
   resultdiv.className = "row ";
+  resultdiv.style = "display:flex; flex-wrap:wrap; gap:10px;";
+
 
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
   leftcol.className = " col-5 px-2";
-  leftcol.style = " padding:2.2% 0 0 0; ";
+  leftcol.style = " padding:2.2% 0 0 0; flex:1 0 10rem; ";
 
   let rightcol = document.createElement("div");
   resultdiv.appendChild(rightcol);
   rightcol.className = " col-7 px-2";
-  rightcol.style = " padding:2.2% 0 0 0; ";
+  rightcol.style = " padding:2.2% 0 0 0; flex:1 0 10rem; ";
 
   var outPPASArray = [
     "Cardiologists",
@@ -681,12 +690,12 @@ function appointmentsForm() {
   // create a div for submit btn
   let outPPASubmitDiv = document.createElement("div");
   contentDiv.appendChild(outPPASubmitDiv);
-  outPPASubmitDiv.className = " text-center w-50 mx-auto mt-3 ";
+  outPPASubmitDiv.className = " text-center submitBtnDiv mx-auto mt-3 ";
 
   // Create button element
   const outPPASBtn = document.createElement("button");
   outPPASBtn.type = "submit";
-  outPPASBtn.className = "btn btn-primary bg-primary  w-50";
+  outPPASBtn.className = "btn btn-primary bg-primary  w-100";
   outPPASBtn.id = "outPatient-appointment-submitBtn";
   outPPASBtn.innerText = "Submit";
   outPPASBtn.addEventListener("click", outPADetailsSubmit);
@@ -704,21 +713,23 @@ function prescriptionForm() {
   outPPPForm.appendChild(resultdiv);
   resultdiv.className = "row ";
   // resultdiv.style="height: 380px;";
+  resultdiv.style = "display:flex; flex-wrap:wrap; gap:10px;";
+
 
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
   leftcol.className = " col-4 px-2  ";
-  leftcol.style = " padding:1% 1% 0 0;  ";
+  leftcol.style = " padding:1% 1% 0 0; flex:1 0 10rem; ";
 
   let middleCol = document.createElement("div");
   resultdiv.appendChild(middleCol);
   middleCol.className = " col-4 px-2";
-  middleCol.style = " padding:1% 1% 0 0; ";
+  middleCol.style = " padding:1% 1% 0 0; flex:1 0 10rem; ";
 
   let rightcol = document.createElement("div");
   resultdiv.appendChild(rightcol);
   rightcol.className = " col-4 px-2";
-  rightcol.style = " padding:1% 1% 0 0;   ";
+  rightcol.style = " padding:1% 1% 0 0; flex:1 0 10rem;  ";
 
   // Medicines
   let outPPPMSLabel = document.createElement("label");
@@ -878,12 +889,12 @@ function prescriptionForm() {
   // create a div for submit btn
   let outPPPSDiv = document.createElement("div");
   middleCol.appendChild(outPPPSDiv);
-  outPPPSDiv.className = " text-center w-75 mx-auto mt-3 ";
+  outPPPSDiv.className = " text-center submitBtnDiv mx-auto mt-3 ";
 
   // Create button element
   const outPPPSBtn = document.createElement("button");
   outPPPSBtn.type = "submit";
-  outPPPSBtn.className = "btn btn-primary bg-primary  w-75";
+  outPPPSBtn.className = "btn btn-primary bg-primary  w-100";
   outPPPSBtn.id = "outPatient-prescription-submitBtn";
   outPPPSBtn.innerText = "Submit";
   outPPPSBtn.addEventListener("click", outPPDetailsSubmit);

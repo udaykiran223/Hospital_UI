@@ -137,20 +137,23 @@ function personalInfoForm() {
   var resultdiv = document.createElement("div");
   permPPPIForm.appendChild(resultdiv);
   resultdiv.className = "row";
+  resultdiv.style = "display:flex; flex-wrap:wrap; gap:10px;";
+
 
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
   leftcol.className = " col-4 px-2";
+  leftcol.style="flex:1 0 10rem; ";
 
   let middleCol = document.createElement("div");
   resultdiv.appendChild(middleCol);
   middleCol.className = " col-4 px-2";
-  middleCol.style = " padding:2.5% 0 0 0; ";
+  middleCol.style = " padding:2.5% 0 0 0; flex:1 0 10rem; ";
 
   let rightcol = document.createElement("div");
   resultdiv.appendChild(rightcol);
   rightcol.className = " col-4 px-2";
-  rightcol.style = " padding:2% 0 0 0; ";
+  rightcol.style = " padding:2% 0 0 0; flex:1 0 10rem; ";
 
   // Patient Type
   // Create label element
@@ -305,12 +308,12 @@ function personalInfoForm() {
   // create a div for submit btn
   let permPPISBDiv = document.createElement("div");
   contentDiv.appendChild(permPPISBDiv);
-  permPPISBDiv.className = " text-center w-50 mx-auto mt-3 ";
+  permPPISBDiv.className = " text-center submitBtnDiv mx-auto mt-3 ";
 
   // Create button element
   const permPPISBtn = document.createElement("button");
   permPPISBtn.type = "submit";
-  permPPISBtn.className = "btn btn-primary bg-primary  w-50";
+  permPPISBtn.className = "btn btn-primary bg-primary  w-100";
   permPPISBtn.id = "patientRegistrationSubmitBtn";
   permPPISBtn.innerText = "Submit";
   permPPISBtn.addEventListener("click", permPPIDetailsSubmit);
@@ -327,21 +330,23 @@ function contactInfoForm() {
   var resultdiv = document.createElement("div");
   permPPCIForm.appendChild(resultdiv);
   resultdiv.className = "row";
+  resultdiv.style = "display:flex; flex-wrap:wrap; gap:10px;";
+
 
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
   leftcol.className = " col-4 px-2";
-  leftcol.style = " padding:2.2% 0 0 0; ";
+  leftcol.style = " padding:2.2% 0 0 0; flex:1 0 10rem; ";
 
   let middleCol = document.createElement("div");
   resultdiv.appendChild(middleCol);
   middleCol.className = " col-4 px-2";
-  middleCol.style = " padding:2.2% 0 0 0; ";
+  middleCol.style = " padding:2.2% 0 0 0; flex:1 0 10rem; ";
 
   let rightcol = document.createElement("div");
   resultdiv.appendChild(rightcol);
   rightcol.className = " col-4 px-2";
-  rightcol.style = " padding:2.2% 0 0 0; ";
+  rightcol.style = " padding:2.2% 0 0 0; flex:1 0 10rem; ";
 
   // Patient Phone Number(Alternate Number)
   // Create input element
@@ -467,12 +472,12 @@ function contactInfoForm() {
   // create a div for submit btn
   let permPCISDiv = document.createElement("div");
   contentDiv.appendChild(permPCISDiv);
-  permPCISDiv.className = " text-center w-50 mx-auto mt-3 ";
+  permPCISDiv.className = " text-center submitBtnDiv mx-auto mt-3 ";
 
   // Create button element
   const permPCISBtn = document.createElement("button");
   permPCISBtn.type = "submit";
-  permPCISBtn.className = "btn btn-primary bg-primary  w-50";
+  permPCISBtn.className = "btn btn-primary bg-primary  w-100";
   permPCISBtn.id = "permPatient-healthConcerns-SubmitBtn";
   permPCISBtn.innerText = "Submit";
   permPCISBtn.addEventListener("click", permPCIDetailsSubmit);
@@ -489,16 +494,18 @@ function healthConcernsForm() {
   var resultdiv = document.createElement("div");
   permPPHCForm.appendChild(resultdiv);
   resultdiv.className = "row ";
+  resultdiv.style = "display:flex; flex-wrap:wrap; gap:10px;";
+
 
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
   leftcol.className = " col-6 px-2";
-  leftcol.style = " padding:2.2% 0 0 0; ";
+  leftcol.style = " padding:2.2% 0 0 0; flex:1 0 10rem; ";
 
   let rightcol = document.createElement("div");
   resultdiv.appendChild(rightcol);
   rightcol.className = " col-6 px-2";
-  rightcol.style = " padding:2.2% 0 0 0; ";
+  rightcol.style = " padding:2.2% 0 0 0; flex:1 0 10rem; ";
 
   // Current Problems
   // Create textarea element
@@ -552,12 +559,12 @@ function healthConcernsForm() {
   // create a div for submit btn
   let permPPHCsubmitDiv = document.createElement("div");
   contentDiv.appendChild(permPPHCsubmitDiv);
-  permPPHCsubmitDiv.className = " text-center w-50 mx-auto mt-3 ";
+  permPPHCsubmitDiv.className = " text-center submitBtnDiv mx-auto mt-3 ";
 
   // Create button element
   const permPPHCSBtn = document.createElement("button");
   permPPHCSBtn.type = "submit";
-  permPPHCSBtn.className = "btn btn-primary bg-primary  w-50";
+  permPPHCSBtn.className = "btn btn-primary bg-primary  w-100";
   permPPHCSBtn.id = "permPatient-healthConcerns-SubmitBtn";
   permPPHCSBtn.innerText = "Submit";
   permPPHCSBtn.addEventListener("click", permPHCDetailsSubmit);
@@ -574,16 +581,18 @@ function appointmentsForm() {
   var resultdiv = document.createElement("div");
   permPPAForm.appendChild(resultdiv);
   resultdiv.className = "row ";
+  resultdiv.style = "display:flex; flex-wrap:wrap; gap:10px;";
+
 
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
   leftcol.className = " col-5 px-2";
-  leftcol.style = " padding:2.2% 0 0 0; ";
+  leftcol.style = " padding:2.2% 0 0 0; flex:1 0 10rem; ";
 
   let rightcol = document.createElement("div");
   resultdiv.appendChild(rightcol);
   rightcol.className = " col-7 px-2";
-  rightcol.style = " padding:2.2% 0 0 0; ";
+  rightcol.style = " padding:2.2% 0 0 0; flex:1 0 10rem; ";
 
   var permPPASArray = [
     "Cardiologists",
@@ -681,12 +690,12 @@ function appointmentsForm() {
   // create a div for submit btn
   let permPPASubmitDiv = document.createElement("div");
   contentDiv.appendChild(permPPASubmitDiv);
-  permPPASubmitDiv.className = " text-center w-50 mx-auto mt-3 ";
+  permPPASubmitDiv.className = " text-center submitBtnDiv mx-auto mt-3 ";
 
   // Create button element
   const permPPASBtn = document.createElement("button");
   permPPASBtn.type = "submit";
-  permPPASBtn.className = "btn btn-primary bg-primary  w-50";
+  permPPASBtn.className = "btn btn-primary bg-primary  w-100";
   permPPASBtn.id = "permPatient-appointment-submitBtn";
   permPPASBtn.innerText = "Submit";
   permPPASBtn.addEventListener("click", permPADetailsSubmit);
@@ -704,21 +713,23 @@ function prescriptionForm() {
   permPPPForm.appendChild(resultdiv);
   resultdiv.className = "row ";
   // resultdiv.style="height: 380px;";
+  resultdiv.style = "display:flex; flex-wrap:wrap; gap:10px;";
+
 
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
   leftcol.className = " col-4 px-2  ";
-  leftcol.style = " padding:1% 1% 0 0;  ";
+  leftcol.style = " padding:1% 1% 0 0; flex:1 0 10rem; ";
 
   let middleCol = document.createElement("div");
   resultdiv.appendChild(middleCol);
   middleCol.className = " col-4 px-2";
-  middleCol.style = " padding:1% 1% 0 0; ";
+  middleCol.style = " padding:1% 1% 0 0; flex:1 0 10rem; ";
 
   let rightcol = document.createElement("div");
   resultdiv.appendChild(rightcol);
   rightcol.className = " col-4 px-2";
-  rightcol.style = " padding:1% 1% 0 0;   ";
+  rightcol.style = " padding:1% 1% 0 0; flex:1 0 10rem;  ";
 
   // Medicines
   let permPPPMSLabel = document.createElement("label");
@@ -878,12 +889,12 @@ function prescriptionForm() {
   // create a div for submit btn
   let permPPPSDiv = document.createElement("div");
   middleCol.appendChild(permPPPSDiv);
-  permPPPSDiv.className = " text-center w-75 mx-auto mt-3 ";
+  permPPPSDiv.className = " text-center submitBtnDiv mx-auto mt-3 ";
 
   // Create button element
   const permPPPSBtn = document.createElement("button");
   permPPPSBtn.type = "submit";
-  permPPPSBtn.className = "btn btn-primary bg-primary  w-75";
+  permPPPSBtn.className = "btn btn-primary bg-primary  w-100";
   permPPPSBtn.id = "permPatient-prescription-submitBtn";
   permPPPSBtn.innerText = "Submit";
   permPPPSBtn.addEventListener("click", permPPDetailsSubmit);
