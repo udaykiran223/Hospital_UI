@@ -3,7 +3,7 @@ var topDivNavTabs = document.getElementById("top-div-navtabs");
 
 // Div for showing the content in top div
 var contentDiv = document.getElementById("top-div-content");
-contentDiv.className = "px-3 py-3 ";
+contentDiv.className = "px-3 py-1 ";
 
 // div for bottom div
 var bottomContentDiv = document.getElementById("bottom-div-content");
@@ -290,7 +290,7 @@ function personalInfoForm() {
   const inPPBGLabel = document.createElement("label");
   inPPBGLabel.htmlFor = "inpatient-patient-bg";
   inPPBGLabel.innerText = "Patient Blood Group : ";
-  inPPBGLabel.className = "w-100 mx-2 fw-medium";
+  inPPBGLabel.className = " mx-2 fw-medium prescription-label";
 
   // Create div element
   const inPPBGDiv = document.createElement("div");
@@ -715,24 +715,24 @@ function prescriptionForm() {
 
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
-  leftcol.className = " col-4 px-2  ";
-  leftcol.style = " padding:1% 1% 0 0; height:250px; flex:1 0 10rem;  ";
+  leftcol.className = " col-4 px-2 prescription-cols ";
+  leftcol.style = " padding:1% 1% 0 0;  flex:1 0 10rem;  ";
 
   let middleCol = document.createElement("div");
   resultdiv.appendChild(middleCol);
-  middleCol.className = " col-4 px-2 ";
-  middleCol.style = " padding:1% 1% 0 0; height:250px; flex:1 0 10rem;  ";
+  middleCol.className = " col-4 px-2 prescription-cols ";
+  middleCol.style = " padding:1% 1% 0 0;  flex:1 0 10rem;  ";
 
   let rightcol = document.createElement("div");
   resultdiv.appendChild(rightcol);
-  rightcol.className = " col-4 px-2 ";
-  rightcol.style = " padding:1% 1% 0 0; height:250px; flex:1 0 10rem; ";
+  rightcol.className = " col-4 px-2 prescription-cols ";
+  rightcol.style = " padding:1% 1% 0 0;  flex:1 0 10rem; ";
 
   // Medicines
   let inPPPMSLabel = document.createElement("label");
   inPPPMSLabel.htmlFor = "medicine-scroll";
-  inPPPMSLabel.className = " mx-2 fw-medium fs-5   ";
-  inPPPMSLabel.innerHTML = "Select Prescribed Medicines : ";
+  inPPPMSLabel.className = " mx-2 fw-medium fs-5 prescription-label  ";
+  inPPPMSLabel.innerHTML = "Prescribed Medicines : ";
   leftcol.appendChild(inPPPMSLabel);
 
   let inPPPMScroll = document.createElement("div");
@@ -782,8 +782,8 @@ function prescriptionForm() {
   // Tests
   let inPPPTSLabel = document.createElement("label");
   inPPPTSLabel.htmlFor = "test-scroll";
-  inPPPTSLabel.className = " mx-2 fw-medium fs-5 w-100  ";
-  inPPPTSLabel.innerHTML = "Select Prescribed Tests : ";
+  inPPPTSLabel.className = " mx-2 fw-medium fs-5 prescription-label  ";
+  inPPPTSLabel.innerHTML = "Prescribed Tests : ";
   middleCol.appendChild(inPPPTSLabel);
 
   let inPPPTScroll = document.createElement("div");
@@ -833,8 +833,8 @@ function prescriptionForm() {
 
   let inPPPSSLabel = document.createElement("label");
   inPPPSSLabel.htmlFor = "scan-scroll";
-  inPPPSSLabel.className = " mx-2 fw-medium fs-5 w-100  ";
-  inPPPSSLabel.innerHTML = "Select Prescribed Scans : ";
+  inPPPSSLabel.className = " mx-2 fw-medium fs-5 prescription-label  ";
+  inPPPSSLabel.innerHTML = "Prescribed Scans : ";
   rightcol.appendChild(inPPPSSLabel);
 
   let inPPPSScroll = document.createElement("div");

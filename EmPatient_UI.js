@@ -3,7 +3,7 @@ var topDivNavTabs = document.getElementById("top-div-navtabs");
 
 // Div for showing the content in top div
 var contentDiv = document.getElementById("top-div-content");
-contentDiv.className = "px-3 py-3 ";
+contentDiv.className = "px-3 py-1 ";
 
 // div for bottom div
 var bottomContentDiv = document.getElementById("bottom-div-content");
@@ -293,7 +293,7 @@ function personalInfoForm() {
   const emPPBGLabel = document.createElement("label");
   emPPBGLabel.htmlFor = "empatient-patient-bg";
   emPPBGLabel.innerText = "Patient Blood Group : ";
-  emPPBGLabel.className = "w-100 mx-2 fw-medium";
+  emPPBGLabel.className = "w-100 mx-2 fw-medium prescription-label";
 
   // Create div element
   const emPPBGDiv = document.createElement("div");
@@ -734,8 +734,8 @@ function prescriptionForm() {
   // Medicines
   let emPPPMSLabel = document.createElement("label");
   emPPPMSLabel.htmlFor = "medicine-scroll";
-  emPPPMSLabel.className = " mx-2 fw-medium fs-5 w-100  ";
-  emPPPMSLabel.innerHTML = "Select Prescribed Medicines : ";
+  emPPPMSLabel.className = " mx-2 fw-medium fs-5 prescription-label  ";
+  emPPPMSLabel.innerHTML = "Prescribed Medicines : ";
   leftcol.appendChild(emPPPMSLabel);
 
   let emPPPMScroll = document.createElement("div");
@@ -785,8 +785,8 @@ function prescriptionForm() {
   // Tests
   let emPPPTSLabel = document.createElement("label");
   emPPPTSLabel.htmlFor = "test-scroll";
-  emPPPTSLabel.className = " mx-2 fw-medium fs-5 w-100  ";
-  emPPPTSLabel.innerHTML = "Select Prescribed Tests : ";
+  emPPPTSLabel.className = " mx-2 fw-medium fs-5 prescription-label  ";
+  emPPPTSLabel.innerHTML = "Prescribed Tests : ";
   middleCol.appendChild(emPPPTSLabel);
 
   let emPPPTScroll = document.createElement("div");
@@ -836,8 +836,8 @@ function prescriptionForm() {
 
   let emPPPSSLabel = document.createElement("label");
   emPPPSSLabel.htmlFor = "scan-scroll";
-  emPPPSSLabel.className = " mx-2 fw-medium fs-5 w-100  ";
-  emPPPSSLabel.innerHTML = "Select Prescribed Scans : ";
+  emPPPSSLabel.className = " mx-2 fw-medium fs-5 prescription-label  ";
+  emPPPSSLabel.innerHTML = "Prescribed Scans : ";
   rightcol.appendChild(emPPPSSLabel);
 
   let emPPPSScroll = document.createElement("div");

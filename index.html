@@ -57,7 +57,7 @@
         color: white;
       }
 
-      @media screen and (max-width: 700px) {
+      @media screen and (max-width: 995px) {
         .sidebar {
           width: 100%;
           height: auto;
@@ -69,17 +69,33 @@
         div.content {
           margin-left: 0;
         }
+        #top-div-content{
+        height: 34vh;
+        overflow-x: scroll;
+        scrollbar-width: thin;
+        
+       }
+       .prescription-cols{
+        height: 220px;
+      }
         .submitBtnDiv{
+          
           width: 50%;
         }
+      .prescription-label{
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 80%;
+      }
       }
 
       @media screen and (max-width: 450px) {
         .sidebar{
           width: 150%;
         }
-        .hospital-imgs{
-          height: 360px;
+        .hospital-imgs{ 
+        height: 360px;
         width: 49.7%;
         /* aspect-ratio: 16/9; */
         /* object-fit: cover; */
@@ -95,11 +111,47 @@
        #top-div-content{
         height: 25vh;
         overflow-x: scroll;
+        scrollbar-width: thin;
+
        }
+       .prescription-cols{
+        height: 250px;
+      }
        .submitBtnDiv{
-        width: 25%;
+        width: 50%;
+       }  
+      }
+
+      @media screen and (max-width: 320px) {
+        .sidebar{
+          width: 150%;
+        }
+        .hospital-imgs{ 
+        height: 360px;
+        width: 49.7%;
+        /* aspect-ratio: 16/9; */
+        /* object-fit: cover; */
+        }
+        #sidebar-div{
+          display: grid;
+          place-items: center;
+        }
+        .sidebar a {
+          text-align: center;
+          float: none;
+        }
+       #top-div-content{
+        height: 20vh;
+        overflow-x: scroll;
+        scrollbar-width: thin;
+
        }
-       
+       .prescription-cols{
+        height: 250px;
+      }
+       .submitBtnDiv{
+        width: 75%;
+       }
       }
 
       #top-div {
@@ -123,7 +175,15 @@
         /* height: 385px; */
         height: 50vh;
       }
-      
+      .prescription-cols{
+        height: 220px;
+      }
+      .prescription-label{
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 80%;
+      }
       .submitBtnDiv{
         width: 25%;
       }

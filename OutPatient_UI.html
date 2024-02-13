@@ -57,7 +57,7 @@
         color: white;
       }
 
-      @media screen and (max-width: 700px) {
+      @media screen and (max-width: 995px) {
         .sidebar {
           width: 100%;
           height: auto;
@@ -69,15 +69,32 @@
         div.content {
           margin-left: 0;
         }
+        #top-div-content{
+        height: 34vh;
+        overflow-x: scroll;
+        scrollbar-width: thin;
+        
+       }
+       .prescription-cols{
+        height: 220px;
+      }
         .submitBtnDiv{
+          
           width: 50%;
         }
+      .prescription-label{
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 80%;
+      }
       }
 
       @media screen and (max-width: 450px) {
         .sidebar{
           width: 150%;
         }
+      
         #sidebar-div{
           display: grid;
           place-items: center;
@@ -89,9 +106,40 @@
        #top-div-content{
         height: 25vh;
         overflow-x: scroll;
+        scrollbar-width: thin;
+
        }
+       .prescription-cols{
+        height: 250px;
+      }
        .submitBtnDiv{
-        width: 25%;
+        width: 50%;
+       }  
+      }
+      @media screen and (max-width: 320px) {
+        .sidebar{
+          width: 150%;
+        }
+        
+        #sidebar-div{
+          display: grid;
+          place-items: center;
+        }
+        .sidebar a {
+          text-align: center;
+          float: none;
+        }
+       #top-div-content{
+        height: 20vh;
+        overflow-x: scroll;
+        scrollbar-width: thin;
+
+       }
+       .prescription-cols{
+        height: 250px;
+      }
+       .submitBtnDiv{
+        width: 75%;
        }
       }
 
@@ -109,6 +157,15 @@
         border: 2px solid rgb(0, 0, 0);
         /* height: 385px; */
         height: 50vh;
+      }
+      .prescription-cols{
+        height: 220px;
+      }
+      .prescription-label{
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 80%;
       }
       .submitBtnDiv{
         width: 25%;
@@ -158,7 +215,7 @@
         <!-- top div -->
         <div class="row" id="top-div">
           <div class="col">
-            <div id="top-div-navtabs">
+            <div id="top-div-navtabs" class="p-1  " >
 
             </div>
 
@@ -169,7 +226,7 @@
         <!-- bottom div -->
         <div class="row" id="bottom-div">
           <div class="col">
-            <div id="bottom-div-content" class="">
+            <div id="bottom-div-content" class="p-1  " >
 
             </div>
           </div>
