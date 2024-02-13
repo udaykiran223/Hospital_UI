@@ -718,17 +718,17 @@ function prescriptionForm() {
 
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
-  leftcol.className = " col-4 px-2  ";
+  leftcol.className = " col-4 px-2 prescription-cols ";
   leftcol.style = " padding:1% 1% 0 0; flex:1 0 10rem; ";
 
   let middleCol = document.createElement("div");
   resultdiv.appendChild(middleCol);
-  middleCol.className = " col-4 px-2";
+  middleCol.className = " col-4 px-2 prescription-cols ";
   middleCol.style = " padding:1% 1% 0 0; flex:1 0 10rem; ";
 
   let rightcol = document.createElement("div");
   resultdiv.appendChild(rightcol);
-  rightcol.className = " col-4 px-2";
+  rightcol.className = " col-4 px-2 prescription-cols ";
   rightcol.style = " padding:1% 1% 0 0; flex:1 0 10rem; ";
 
   // Medicines
@@ -740,7 +740,7 @@ function prescriptionForm() {
 
   let emPPPMScroll = document.createElement("div");
   emPPPMScroll.id = "medicine-scroll";
-  emPPPMScroll.className = "h-50 mx-2 w-100 bg-light prescription-scroll";
+  emPPPMScroll.className = "h-75 mx-2 w-100 bg-light prescription-scroll";
 
   let emPPPMedicines = [
     "Amlodipine",
@@ -791,7 +791,7 @@ function prescriptionForm() {
 
   let emPPPTScroll = document.createElement("div");
   emPPPTScroll.id = "test-scroll";
-  emPPPTScroll.className = "h-50 mx-2 w-100 bg-light prescription-scroll";
+  emPPPTScroll.className = "h-75 mx-2 w-100 bg-light prescription-scroll";
 
   let emPPPTests = [
     "Test1",
@@ -842,7 +842,7 @@ function prescriptionForm() {
 
   let emPPPSScroll = document.createElement("div");
   emPPPSScroll.id = "scan-scroll";
-  emPPPSScroll.className = "h-50 mx-2 w-100 bg-light prescription-scroll";
+  emPPPSScroll.className = "h-75 mx-2 w-100 bg-light prescription-scroll";
 
   let emPPPScans = [
     "Scan1",
@@ -888,7 +888,7 @@ function prescriptionForm() {
   // emPatient Prescriptions Submit Btn
   // create a div for submit btn
   let emPPPSDiv = document.createElement("div");
-  middleCol.appendChild(emPPPSDiv);
+  contentDiv.appendChild(emPPPSDiv);
   emPPPSDiv.className = " text-center submitBtnDiv mx-auto mt-3 ";
 
   // Create button element

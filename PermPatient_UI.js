@@ -718,17 +718,17 @@ function prescriptionForm() {
 
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
-  leftcol.className = " col-4 px-2  ";
+  leftcol.className = " col-4 px-2 prescription-cols ";
   leftcol.style = " padding:1% 1% 0 0; flex:1 0 10rem; ";
 
   let middleCol = document.createElement("div");
   resultdiv.appendChild(middleCol);
-  middleCol.className = " col-4 px-2";
+  middleCol.className = " col-4 px-2 prescription-cols ";
   middleCol.style = " padding:1% 1% 0 0; flex:1 0 10rem; ";
 
   let rightcol = document.createElement("div");
   resultdiv.appendChild(rightcol);
-  rightcol.className = " col-4 px-2";
+  rightcol.className = " col-4 px-2 prescription-cols ";
   rightcol.style = " padding:1% 1% 0 0; flex:1 0 10rem;  ";
 
   // Medicines
@@ -740,7 +740,7 @@ function prescriptionForm() {
 
   let permPPPMScroll = document.createElement("div");
   permPPPMScroll.id = "medicine-scroll";
-  permPPPMScroll.className = "h-50 mx-2 w-100 bg-light prescription-scroll";
+  permPPPMScroll.className = "h-75 mx-2 w-100 bg-light prescription-scroll";
 
   let permPPPMedicines = [
     "Amlodipine",
@@ -791,7 +791,7 @@ function prescriptionForm() {
 
   let permPPPTScroll = document.createElement("div");
   permPPPTScroll.id = "test-scroll";
-  permPPPTScroll.className = "h-50 mx-2 w-100 bg-light prescription-scroll";
+  permPPPTScroll.className = "h-75 mx-2 w-100 bg-light prescription-scroll";
 
   let permPPPTests = [
     "Test1",
@@ -842,7 +842,7 @@ function prescriptionForm() {
 
   let permPPPSScroll = document.createElement("div");
   permPPPSScroll.id = "scan-scroll";
-  permPPPSScroll.className = "h-50 mx-2 w-100 bg-light prescription-scroll";
+  permPPPSScroll.className = "h-75 mx-2 w-100 bg-light prescription-scroll";
 
   let permPPPScans = [
     "Scan1",
@@ -888,7 +888,7 @@ function prescriptionForm() {
   // permPatient Prescriptions Submit Btn
   // create a div for submit btn
   let permPPPSDiv = document.createElement("div");
-  middleCol.appendChild(permPPPSDiv);
+  contentDiv.appendChild(permPPPSDiv);
   permPPPSDiv.className = " text-center submitBtnDiv mx-auto mt-3 ";
 
   // Create button element
