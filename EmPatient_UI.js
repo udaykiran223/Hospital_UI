@@ -293,7 +293,7 @@ function personalInfoForm() {
   const emPPBGLabel = document.createElement("label");
   emPPBGLabel.htmlFor = "empatient-patient-bg";
   emPPBGLabel.innerText = "Patient Blood Group : ";
-  emPPBGLabel.className = "w-100 mx-2 fw-medium prescription-label";
+  emPPBGLabel.className = "w-100 mx-2 fw-medium elipsed-label";
 
   // Create div element
   const emPPBGDiv = document.createElement("div");
@@ -594,23 +594,159 @@ function appointmentsForm() {
   rightcol.className = " col-7 px-2";
   rightcol.style = " padding:2.2% 0 0 0; flex:1 0 10rem; ";
 
-  var emPPASArray = [
-    "Cardiologists",
-    "Audiologists",
-    "Dentist",
-    "ENT Specialist",
-    "Gynecologist",
-    "Orthopedic Surgeon",
-    "Paediatrician",
-    "Psychiatrists",
-    "Veterinarian",
-    "Radiologist",
-    "Pulmonologist",
-    "Endocrinologist",
-    "Oncologist",
-    "Neurologist",
-    "Cardiothoracic Surgeon",
-  ];
+  var Doctors= [
+    {
+        "specialty": "Audiologists",
+        "doctors": [
+            "Dr. Ashish Kumar",
+            "Dr. Kesh Chudry",
+            "Dr. Shalini Periaswamy",
+            "Dr. Subham Sarangi",
+            "Dr. Monica Chatterjee"
+        ]
+    },
+    {
+        "specialty": "Cardiologists",
+        "doctors": [
+            "Dr. Bikram K Mohanty",
+            "Dr. Amit Malik",
+            "Dr. Ashish Chauhan",
+            "Dr. Sarita Gulati",
+            "Dr. Bipin Kumar Dubey"
+        ]
+    },
+    {
+        "specialty": "Cardiothoracic Surgeon",
+        "doctors": [
+            "Dr B N Das",
+            "Dr. Shanti Talwar",
+            "Dr Muthu Jothi",
+            "Dr. Ramesh Arora",
+            "Dr. M.r. Girinath"
+        ]
+    },
+    {
+        "specialty": "Dentist",
+        "doctors": [
+            "Dr. Vani Hegde",
+            "Dr. Anil Kohli",
+            "Dr. Shashi Bhushan Gupta",
+            "Dr. Kartik Mandal",
+            "Dr. Sonali Taneja"
+        ]
+    },
+    {
+        "specialty": "ENT Specialist",
+        "doctors": [
+            "Dr. E.V. Raman",
+            "Dr. EC Vinaya Kumar",
+            "Dr. P. L. Dhingra",
+            "Dr. Debashish Dutta Majumdar",
+            "Dr. Nagamani YS"
+        ]
+    },
+    {
+        "specialty": "Endocrinologist",
+        "doctors": [
+            "Dr. Iyad Hassan",
+            "Dr. Jayashree Gopal",
+            "Dr Sivagnana Sundaram",
+            "Dr. Anoop Misra",
+            "Dr. Rajendiran N"
+        ]
+    },
+    {
+        "specialty": "Gynecologist",
+        "doctors": [
+            "Dr. Aradhana Singh",
+            "Dr. Madhu Srivastava",
+            "Dr. Padmapriya Vivek",
+            "Dr. Monika Wadhwan",
+            "Dr. Neera Bhan"
+        ]
+    },
+    {
+        "specialty": "Neurologist",
+        "doctors": [
+            "Dr. Puneet Agarwal",
+            "Dr. Geetha Lakshmipathy",
+            "Dr. Anand Kumar Saxena",
+            "Dr. Mukul Varma",
+            "Dr. Praveen Gupta"
+        ]
+    },
+    {
+        "specialty": "Oncologist",
+        "doctors": [
+            "Dr. Nandini Hazarika",
+            "Dr. Ian Pinto",
+            "Dr. Jayanti S Thumsi",
+            "Dr. Pramod Kumar Julka",
+            "Dr. Suresh Advani"
+        ]
+    },
+    {
+        "specialty": "Orthopedic Surgeon",
+        "doctors": [
+            "Dr. Balvinder Rana",
+            "Dr. Ram Chidambaram",
+            "Dr. Yatinder Kharbanda",
+            "Dr. Jayant Arora",
+            "Dr. Narender Kumar Magu"
+        ]
+    },
+    {
+        "specialty": "Paediatrician",
+        "doctors": [
+            "Dr. Jyotsna Kirtane",
+            "Dr. Deepika Gandhi",
+            "Dr. Subhash C Arya",
+            "Dr. Jyothi Raghuram",
+            "Dr. Lokesh Mahajan"
+        ]
+    },
+    {
+        "specialty": "Psychiatrists",
+        "doctors": [
+            "Dr. Santosh Bangar",
+            "Dr. Manish Jain",
+            "Dr. P Raghuram Reddy",
+            "Dr. Puneet Dwevedi",
+            "Dr. Puneet Dwevedi",
+            "Dr. V.s.p. Bashyam"
+        ]
+    },
+    {
+        "specialty": "Radiologist",
+        "doctors": [
+            "Dr. Irene Faith Manoja",
+            "Dr. Nihar Ranjan Mohanty",
+            "Dr. Mugada Chandra Sekhar",
+            "Dr. Chaganti Rama Seshu",
+            "Dr. Polukonda Geetha Vani"
+        ]
+    },
+    {
+        "specialty": "Pulmonologist",
+        "doctors": [
+            "Dr. Ashok Sengupta",
+            "Dr. Abhay Uppe",
+            "Dr. Manoj Kumar Goel",
+            "Dr. Nikhil Malhotra",
+            "Dr. Ankit Parakh"
+        ]
+    },
+    {
+        "specialty": "Veterinarian",
+        "doctors": [
+            "Dr. Rajesh Kumar Singh",
+            "Dr. R. Suresh Kumar",
+            "Dr. Anirudh Mittal",
+            "Dr. Karnati",
+            "Dr. Srinivas Pulpa"
+        ]
+    }
+];
   // Specialists
   // Create input element
   const emPPASpecialist = document.createElement("select");
@@ -621,23 +757,34 @@ function appointmentsForm() {
   const emPPASNone = document.createElement("option");
   emPPASNone.value = "None";
   emPPASNone.selected = true;
-  emPPASNone.innerHTML = "Select a Speciality";
+  emPPASNone.innerHTML = "Select a Speciality Doctor";
   emPPASpecialist.appendChild(emPPASNone);
 
-  emPPASArray.forEach(Specialist);
+  Doctors.forEach(Specialist);
   // function for Specialists
   function Specialist(x) {
+
+    let emPPASOptionsGroup=document.createElement("optgroup");
+    emPPASOptionsGroup.value=x.specialty;
+    emPPASOptionsGroup.label=x.specialty;
+    emPPASOptionsGroup.className="fs-5  fw-medium";
+    emPPASOptionsGroup.style="background-color: lightgray; ";
+    emPPASpecialist.appendChild(emPPASOptionsGroup);
+
+    // console.log(x.specialty);
+    for(let i=0;i<x.doctors.length;i++){
     let emPPASOptions = document.createElement("option");
-    emPPASOptions.value = x;
-    emPPASOptions.innerHTML = x;
+    emPPASOptions.value = x.doctors[i];
+    emPPASOptions.innerHTML = x.doctors[i];
     emPPASpecialist.appendChild(emPPASOptions);
+    }
   }
 
   // Create label element
   const emPPASLabel = document.createElement("label");
   emPPASLabel.htmlFor = "empatient-appointment-specialist";
-  emPPASLabel.innerText = "Select The Speciality : ";
-  emPPASLabel.className = "w-100 ms-3 ps-1 fw-medium ";
+  emPPASLabel.innerText = "Select The Speciality Doctor : ";
+  emPPASLabel.className = "w-100 ms-3 ps-1 fw-medium elipsed-label";
 
   // Create div element
   const emPPASDiv = document.createElement("div");
@@ -647,44 +794,6 @@ function appointmentsForm() {
   emPPASDiv.appendChild(emPPASpecialist);
   // Append the div to the body or another container element
   leftcol.appendChild(emPPASDiv);
-
-  //   Speciality Doctors
-  // Specialists
-  // Create input element
-  const emPPASDoctor = document.createElement("select");
-  emPPASDoctor.className =
-    "mx-2 w-75 form-control form-select d-inline-block  ";
-  emPPASDoctor.id = "empatient-appointment-speciality-doctor";
-
-  const emPPASDNone = document.createElement("option");
-  emPPASDNone.value = "None";
-  emPPASDNone.selected = true;
-  emPPASDNone.innerHTML = "Select a Doctor";
-  emPPASDoctor.appendChild(emPPASDNone);
-
-  emPPASArray.forEach(Doctors);
-  // function for Specialists
-  function Doctors(x) {
-    let emPPASDOptions = document.createElement("option");
-    emPPASDOptions.value = x;
-    emPPASDOptions.innerHTML = x;
-    emPPASDoctor.appendChild(emPPASDOptions);
-  }
-
-  // Create label element
-  const emPPASDLabel = document.createElement("label");
-  emPPASDLabel.htmlFor = "empatient-appointment-speciality-doctor";
-  emPPASDLabel.innerText = "Select The Doctor : ";
-  emPPASDLabel.className = "w-100 ms-3 ps-1 fw-medium";
-
-  // Create div element
-  const emPPASDDiv = document.createElement("div");
-  emPPASDDiv.className = " mb-3 mt-4 ";
-
-  emPPASDDiv.appendChild(emPPASDLabel);
-  emPPASDDiv.appendChild(emPPASDoctor);
-  // Append the div to the body or another container element
-  leftcol.appendChild(emPPASDDiv);
 
   // emPatient Appointment Submit Btn
   // create a div for submit btn
@@ -734,7 +843,7 @@ function prescriptionForm() {
   // Medicines
   let emPPPMSLabel = document.createElement("label");
   emPPPMSLabel.htmlFor = "medicine-scroll";
-  emPPPMSLabel.className = " mx-2 fw-medium fs-5 prescription-label  ";
+  emPPPMSLabel.className = " mx-2 fw-medium fs-5 elipsed-label  ";
   emPPPMSLabel.innerHTML = "Prescribed Medicines : ";
   leftcol.appendChild(emPPPMSLabel);
 
@@ -743,20 +852,84 @@ function prescriptionForm() {
   emPPPMScroll.className = "h-75 mx-2 w-100 bg-light prescription-scroll";
 
   let emPPPMedicines = [
+    "Acetaminophen",
+    "Adderall",
+    "Amitriptyline",
     "Amlodipine",
-    "Amoxycilin",
+    "Amoxicillin",
     "Atenolol",
+    "Ativan",
+    "Atorvastatin",
     "Azithromycin",
     "B-Complex",
-    "Chlorophenaramine",
-    "Citrizen",
+    "Benzonatate",
+    "Brilinta",
+    "Bunavail",
+    "Buprenorphine",
+    "Cephalexin",
+    "Ciprofloxacin",
+    "Citalopram",
+    "Clindamycin",
+    "Clonazepam",
+    "Cyclobenzaprine",
+    "Cymbalta",
+    "Doxycycline",
+    "Dupixent",
+    "Entresto",
+    "Entyvio",
+    "Farxiga",
+    "Fentanyl Patch",
+    "Gabapentin",
+    "Gilenya",
     "Glimeperide",
+    "Humira",
+    "Hydrochlorothiazide",
+    "Hydroxychloroquine",
+    "Ibuprofen",
+    "Imbruvica",
+    "Invokana",
+    "Januvia",
+    "Jardiance",
+    "Kevzara",
+    "Leqvio",
+    "Lexapro",
+    "Lisinopril",
+    "Lofexidine",
+    "Loratadine",
+    "Lyrica",
+    "Melatonin",
+    "Meloxicam",
     "Metformin",
+    "Methadone",
+    "Methotrexate",
+    "Metoprolol",
+    "Mounjaro",
+    "Naloxone",
+    "Naltrexone",
+    "Naproxen",
+    "Narcan",
+    "Nurtec",
     "Omeprazole",
+    "Onpattro",
+    "Otezla",
+    "Ozempic",
+    "Pantoprazole",
     "Paracetamol",
+    "Plan B",
+    "Prednisone",
+    "Probuphine",
+    "Rybelsus",
     "Sertraline",
+    "Sublocade",
     "Telmisartan",
-  ];
+    "Tramadol",
+    "Trazodone",
+    "Viagra",
+    "Wegovy",
+    "Wellbutrin",
+    "Xanax",
+    "Zubsolv"
+];
   emPPPMedicines.sort();
   // console.log(emPPPMedicine);
   emPPPMedicines.forEach(medicine);
@@ -773,7 +946,7 @@ function prescriptionForm() {
 
     let emPPPMCBLabels = document.createElement("label");
     emPPPMCBLabels.htmlFor = "emPatient-prescription-medicine-" + x;
-    emPPPMCBLabels.className = "w-75 ";
+    emPPPMCBLabels.className = "w-80 elipsed-label";
     emPPPMCBLabels.innerHTML = x;
 
     emPPPMCBDiv.appendChild(emPPPMCBoxes);
@@ -785,7 +958,7 @@ function prescriptionForm() {
   // Tests
   let emPPPTSLabel = document.createElement("label");
   emPPPTSLabel.htmlFor = "test-scroll";
-  emPPPTSLabel.className = " mx-2 fw-medium fs-5 prescription-label  ";
+  emPPPTSLabel.className = " mx-2 fw-medium fs-5 elipsed-label  ";
   emPPPTSLabel.innerHTML = "Prescribed Tests : ";
   middleCol.appendChild(emPPPTSLabel);
 
@@ -794,20 +967,62 @@ function prescriptionForm() {
   emPPPTScroll.className = "h-75 mx-2 w-100 bg-light prescription-scroll";
 
   let emPPPTests = [
-    "Test1",
-    "Test2",
-    "Test3",
-    "Test4",
-    "Test5",
-    "Test6",
-    "Test7",
-    "Test8",
-    "Test9",
-    "Test10",
-    "Test11",
-    "Test12",
-    "Test13",
-  ];
+    "ACTH (Adrenocorticotropic hormone)",
+    "AFP (Alpha-fetoprotein)",
+    "ALP (Alkaline phosphatase)",
+    "ALT (Alanine aminotransferase)",
+    "ANA (Antinuclear antibody)",
+    "Anti-CCP (Anti-cyclic citrullinated peptide)",
+    "Anti-dsDNA (Anti-double stranded DNA)",
+    "Audiometry",
+    "BUN (Blood urea nitrogen)",
+    "Bilirubin",
+    "Blood sugar",
+    "Bone marrow biopsy",
+    "CA-125 (Cancer antigen 125)",
+    "CBC (Complete blood count)",
+    "CEA (Carcinoembryonic antigen)",
+    "CO2 (Carbon dioxide)",
+    "Colonoscopy",
+    "Cortisol",
+    "Culture",
+    "DEXA (Dual-energy X-ray absorptiometry)",
+    "EEG (Electroencephalogram)",
+    "ELISA (Enzyme-linked immunosorbent assay)",
+    "EMG (Electromyography)",
+    "Eosinophils",
+    "Erythrocyte sedimentation rate (ESR)",
+    "Funduscopy",
+    "GFR (Glomerular filtration rate)",
+    "Gastroscopy",
+    "Gram stain",
+    "HbA1c (Glycated hemoglobin)",
+    "Lumbar puncture",
+    "MRI scans (Magnetic resonance imaging)",
+    "Oximetry",
+    "PCR (Polymerase chain reaction)",
+    "Prenatal testing",
+    "PSA (Prostate-specific antigen)",
+    "Peak flow",
+    "PT (Prothrombin time)",
+    "Prolactin",
+    "QCT (Quantitative computed tomography)",
+    "RF (Rheumatoid factor)",
+    "Refraction",
+    "Skin biopsy",
+    "Skin prick test",
+    "Spirometry",
+    "Stress test",
+    "TSH (Thyroid-stimulating hormone)",
+    "Tonometry",
+    "Tympanometry",
+    "Urinalysis",
+    "Urine culture",
+    "Urine glucose",
+    "Visual acuity",
+    "aPTT (Activated partial thromboplastin time)",
+    "pH (Potential of Hydrogen)"
+];
   // emPPPTest.sort();
   // console.log(emPPPMedicine);
   emPPPTests.forEach(test);
@@ -824,7 +1039,7 @@ function prescriptionForm() {
 
     let emPPPTCBLabels = document.createElement("label");
     emPPPTCBLabels.htmlFor = "emPatient-prescription-test-" + y;
-    emPPPTCBLabels.className = "w-75 ";
+    emPPPTCBLabels.className = "w-80 elipsed-label ";
     emPPPTCBLabels.innerHTML = y;
 
     emPPPTCBDiv.appendChild(emPPPTCBoxes);
@@ -836,7 +1051,7 @@ function prescriptionForm() {
 
   let emPPPSSLabel = document.createElement("label");
   emPPPSSLabel.htmlFor = "scan-scroll";
-  emPPPSSLabel.className = " mx-2 fw-medium fs-5 prescription-label  ";
+  emPPPSSLabel.className = " mx-2 fw-medium fs-5 elipsed-label  ";
   emPPPSSLabel.innerHTML = "Prescribed Scans : ";
   rightcol.appendChild(emPPPSSLabel);
 
@@ -845,20 +1060,24 @@ function prescriptionForm() {
   emPPPSScroll.className = "h-75 mx-2 w-100 bg-light prescription-scroll";
 
   let emPPPScans = [
-    "Scan1",
-    "Scan2",
-    "Scan3",
-    "Scan4",
-    "Scan5",
-    "Scan6",
-    "Scan7",
-    "Scan8",
-    "Scan9",
-    "Scan10",
-    "Scan11",
-    "Scan12",
-    "Scan13",
-  ];
+    "Angiogram",
+    "Arthroscopy",
+    "Biopsy",
+    "Bone scan",
+    "Bronchoscopy",
+    "CT scan (Computed tomography scan)",
+    "Cystoscopy",
+    "Echocardiogram",
+    "Electrocardiogram (ECG)",
+    "Electroencephalogram (EEG)",
+    "Genetic test",
+    "Lung function test",
+    "Mammogram",
+    "PET scan (Positron emission tomography scan)",
+    "SPECT scan (Single-photon emission computed tomography scan)",
+    "Ultrasound scan",
+    "X-ray"
+];
   // emPPPTest.sort();
   // console.log(emPPPMedicine);
   emPPPScans.forEach(scan);
@@ -875,7 +1094,7 @@ function prescriptionForm() {
 
     let emPPPSCBLabels = document.createElement("label");
     emPPPSCBLabels.htmlFor = "emPatient-prescription-scan-" + z;
-    emPPPSCBLabels.className = "w-75 ";
+    emPPPSCBLabels.className = "w-80 elipsed-label ";
     emPPPSCBLabels.innerHTML = z;
 
     emPPPSCBDiv.appendChild(emPPPSCBoxes);
