@@ -939,7 +939,7 @@ function prescriptionForm() {
   // function for medicine
   function medicine(x) {
     let outPPPMCBDiv = document.createElement("div");
-    outPPPMCBDiv.className = "mx-2 ";
+    outPPPMCBDiv.className = "mx-2 d-flex ";
 
     let outPPPMCBoxes = document.createElement("input");
     outPPPMCBoxes.type = "checkbox";
@@ -1033,7 +1033,7 @@ function prescriptionForm() {
   // function for medicine
   function test(y) {
     let outPPPTCBDiv = document.createElement("div");
-    outPPPTCBDiv.className = "mx-2 ";
+    outPPPTCBDiv.className = "mx-2 d-flex ";
 
     let outPPPTCBoxes = document.createElement("input");
     outPPPTCBoxes.type = "checkbox";
@@ -1088,7 +1088,7 @@ function prescriptionForm() {
   // function for medicine
   function scan(z) {
     let outPPPSCBDiv = document.createElement("div");
-    outPPPSCBDiv.className = "mx-2 ";
+    outPPPSCBDiv.className = "mx-2 d-flex ";
 
     let outPPPSCBoxes = document.createElement("input");
     outPPPSCBoxes.type = "checkbox";
