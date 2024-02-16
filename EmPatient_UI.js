@@ -1,18 +1,127 @@
 
+let getURL="http://localhost:8080/Hospital/getAllPatientsTableData";
+let postURL="http://localhost:8080/Hospital/savePatientsTable";
+var PatientID=1;
 displayEmPatient();
 function displayEmPatient(){
 
-let data = new XMLHttpRequest();
-data.open("GET", "http://localhost:8080/Hospital/getAllPatientsTableData");
+  // Showing Data in the BottomDiv Table
+function showEPDetails(url) {
+
+  let data = new XMLHttpRequest();
+data.open("GET", url);
 data.send();
 
 data.onload = function () {
   console.log("Get Call Successfull !!!! ");
-  let emPDetails = JSON.parse(this.response);
+  var emPDetails = JSON.parse(this.response);
+
+  var emPPDTHRDetails = [
+    "Patient ID",
+    "Patient Name",
+    "Patient M.NO",
+    "Patient Type",
+    "Actions",
+  ];
+
+  {
+    var emPBCDiv = document.getElementById("bottom-div-content");
+    emPBCDiv.innerHTML = " ";
+    emPBCDiv.className = "px-3 py-3";
+
+    let emPPIBCDiv = document.createElement("div");
+    emPBCDiv.appendChild(emPPIBCDiv);
+    emPBCDiv.className="showData-scroll h-100 py-1";
+
+    let emPPDTable = document.createElement("table");
+    emPPDTable.className = "w-100";
+
+    let headRow = document.createElement("tr");
+    for(let x=0; x<emPPDTHRDetails.length;x++){
+      let th= document.createElement("th");
+      th.innerHTML= emPPDTHRDetails[x];
+      th.className="table-text";
+      headRow.appendChild(th);
+    }
+    emPPIBCDiv.appendChild(emPPDTable);
+
+    let tBody = document.createElement("tbody");
+    tBody.appendChild(headRow);
+    emPPDTable.appendChild(tBody);
+
+    for (let i = 0; i < emPDetails.length; i++) {
+      if (emPDetails[i].hospitalPatientType == "EM") {
+        let bodyRows = document.createElement("tr");
+          bodyRows.className = "w-100";
+        let td1 = document.createElement("td");
+        td1.innerHTML = "EP00" + emPDetails[i].hospitalPatientIdentity;
+        td1.className="table-text ";
+        //   td1.style = " width:10%; ";
+        let td2 = document.createElement("td");
+        td2.innerHTML = emPDetails[i].hospitalPatientName;
+        td2.className="table-text";
+        //   td2.style = "width:10%; ";
+        let td3 = document.createElement("td");
+        td3.innerHTML = emPDetails[i].hospitalPatientPhoneNumber;
+        td3.className="table-text";
+        //   td3.style = " width:10%; ";
+        let td4 = document.createElement("td");
+        td4.innerHTML = emPDetails[i].hospitalPatientType;
+        td4.className="table-text ";
+        //   td4.style = " width:10%; ";
+        let td5 = document.createElement("td");
+        td5.className="table-text ";
+        //   td5.style = " width:30%; ";
+
+        // View Btn
+        let viewBtn = document.createElement("button");
+        viewBtn.className ="btn  text-center   me-2 h-25 btn-outline-success bg-success p-1";
+        viewBtn.onclick = function () { emPDView(emPDetails[i]); };
+        let viewIcon = document.createElement("i");
+        viewIcon.className = "bi bi-eye-fill text-white ";
+        viewIcon.style = "font-size:25px; ";
+
+        // Edit Btn
+        let editBtn = document.createElement("button");
+        editBtn.className ="btn  text-center   h-25 me-2 btn-outline-primary bg-primary p-1";
+        // editBtn.addEventListener('click' , emPDEdit(emPDetails[i]));
+        editBtn.onclick = function () { emPDEdit(emPDetails[i]); };
+        let editIcon = document.createElement("i");
+        editIcon.className = "bi bi-pencil-square text-white ";
+        editIcon.style = "font-size:25px; ";
+
+        // Delete Btn
+        let deleteBtn = document.createElement("button");
+        deleteBtn.className ="btn  text-center   h-25 btn-outline-danger bg-danger p-1";
+        deleteBtn.onclick = function () { emPDDelete(emPDetails[i]); };
+        let deleteIcon = document.createElement("i");
+        deleteIcon.className = "bi bi-trash-fill text-white ";
+        deleteIcon.style = "font-size:25px; ";
+
+        console.log(emPDetails);
+        viewBtn.appendChild(viewIcon);
+        editBtn.appendChild(editIcon);
+        deleteBtn.appendChild(deleteIcon);
+
+        td5.appendChild(viewBtn);
+        td5.appendChild(editBtn);
+        td5.appendChild(deleteBtn);
+
+        bodyRows.appendChild(td1);
+        bodyRows.appendChild(td2);
+        bodyRows.appendChild(td3);
+        bodyRows.appendChild(td4);
+        bodyRows.appendChild(td5);
+        tBody.appendChild(bodyRows);
+      }
+    }
+  }
+}
+};
 
 var EmPatientDetails = {
   hospitalPatientType: "EM",
-  hospitalPatientIdentity: null,
+  hospitalPatientIdentity: PatientID,
   hospitalPatientName: null,
   hospitalPatientAddress: null,
   hospitalPatientPhoneNumber: null,
@@ -26,8 +135,6 @@ var EmPatientDetails = {
   hospitalPatientCurrentProblem: null,
   hospitalPatientPreviousProblem: null,
   hospitalPatientDoctor: null,
-  hospitalPatientAppointment: null,
-  hospitalPatientBed: null,
   hospitalPatientMedicine: null,
   hospitalPatientTest: null,
   hospitalPatientScan : null
@@ -55,27 +162,27 @@ function emPatientInfo() {
 // Functions to handle button clicks
 function personalInfo() {
   personalInfoForm();
-  showEPDetails();
+  showEPDetails(getURL);
 }
 
 function contactInfo() {
   contactInfoForm();
-  showEPDetails();
+  showEPDetails(getURL);
 }
 
 function healthConcerns() {
   healthConcernsForm();
-  showEPDetails();
+  showEPDetails(getURL);
 }
 
 function appointments() {
   appointmentsForm();
-  showEPDetails();
+  showEPDetails(getURL);
 }
 
 function prescription() {
   prescriptionForm();
-  showEPDetails();
+  showEPDetails(getURL);
 }
 
 // TopDivNavTabs ⬇️⬇️⬇️
@@ -170,7 +277,6 @@ function personalInfoForm() {
   emPPPIForm.appendChild(resultdiv);
   resultdiv.className = "row";
   resultdiv.style = "display:flex; flex-wrap:wrap; gap:10px;";
-
 
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
@@ -744,7 +850,7 @@ function appointmentsForm() {
             "Dr. Manish Jain",
             "Dr. P Raghuram Reddy",
             "Dr. Puneet Dwevedi",
-            "Dr. Puneet Dwevedi",
+            "Dr. Sujeet Dwevedi",
             "Dr. V.s.p. Bashyam"
         ]
     },
@@ -973,7 +1079,7 @@ function prescriptionForm() {
     let emPPPMCBoxes = document.createElement("input");
     emPPPMCBoxes.type = "checkbox";
     emPPPMCBoxes.value = x;
-    emPPPMCBoxes.className = "mx-2 ";
+    emPPPMCBoxes.className = "mx-2 medicine-selector";
     emPPPMCBoxes.id = "emPatient-prescription-medicine-" + x;
 
     let emPPPMCBLabels = document.createElement("label");
@@ -1066,7 +1172,7 @@ function prescriptionForm() {
     let emPPPTCBoxes = document.createElement("input");
     emPPPTCBoxes.type = "checkbox";
     emPPPTCBoxes.value = y;
-    emPPPTCBoxes.className = "mx-2 ";
+    emPPPTCBoxes.className = "mx-2 test-selector";
     emPPPTCBoxes.id = "emPatient-prescription-test-" + y;
 
     let emPPPTCBLabels = document.createElement("label");
@@ -1121,7 +1227,7 @@ function prescriptionForm() {
     let emPPPSCBoxes = document.createElement("input");
     emPPPSCBoxes.type = "checkbox";
     emPPPSCBoxes.value = z;
-    emPPPSCBoxes.className = "mx-2 ";
+    emPPPSCBoxes.className = "mx-2 scan-selector";
     emPPPSCBoxes.id = "emPatient-prescription-scan-" + z;
 
     let emPPPSCBLabels = document.createElement("label");
@@ -1268,14 +1374,9 @@ function emPPDetailsSubmit() {
    console.log(checkedScans);
    console.log(EmPatientDetails);
    
-   postCall(EmPatientDetails,"http://localhost:8080/Hospital/savePatientsTable",submitBtn);
+   postCall(EmPatientDetails,postURL,submitBtn);
    
   form.reset();
-  checkedMedicine="";
-  checkedTests="";
-  checkedScans="";
-  console.log("cleaning the data .......");
-  EmPatientDetails={};
 }
 
 function postCall(obj,url,btn){
@@ -1290,112 +1391,19 @@ function postCall(obj,url,btn){
         if (rqst.status === 201) {
           console.log("Post Call Successfull !!!");
           btn.style="display:none;";
+          PatientID++;
+          showEPDetails(getURL);
+          console.log("cleaning the data .......");
+          checkedMedicine="";
+          checkedTests="";
+          checkedScans="";
+          EmPatientDetails={};
          }else{
           localStorage.setItem("inPatientDetails" , data);
          }
   };
 }
 
-console.log(emPDetails);
-
-function showEPDetails() {
-
-  var emPPDTHRDetails = [
-    "Patient ID",
-    "Patient Name",
-    "Patient M.NO",
-    "Patient Type",
-    "Actions",
-  ];
-
-  {
-    var emPBCDiv = document.getElementById("bottom-div-content");
-    emPBCDiv.innerHTML = " ";
-    emPBCDiv.className = "px-3 py-3";
-
-    let emPPIBCDiv = document.createElement("div");
-    emPBCDiv.appendChild(emPPIBCDiv);
-    emPBCDiv.className="showData-scroll h-100 py-1";
-
-    let emPPDTable = document.createElement("table");
-    emPPDTable.className = "w-100";
-
-    let headRow = document.createElement("tr");
-    for(let x=0; x<emPPDTHRDetails.length;x++){
-      let th= document.createElement("th");
-      th.innerHTML= emPPDTHRDetails[x];
-      headRow.appendChild(th);
-    }
-    emPPIBCDiv.appendChild(emPPDTable);
-
-    let tBody = document.createElement("tbody");
-    tBody.appendChild(headRow);
-    emPPDTable.appendChild(tBody);
-
-    for (let i = 0; i < emPDetails.length; i++) {
-      if (emPDetails[i].hospitalPatientType == "EM") {
-        let bodyRows = document.createElement("tr");
-        //   bodyRows.className = "w-100";
-        let td1 = document.createElement("td");
-        td1.innerHTML = "EP00" + emPDetails[i].hospitalPatientId;
-        //   td1.style = " width:10%; ";
-        let td2 = document.createElement("td");
-        td2.innerHTML = emPDetails[i].hospitalPatientName;
-        //   td2.style = "width:10%; ";
-        let td3 = document.createElement("td");
-        td3.innerHTML = emPDetails[i].hospitalPatientPhoneNumber;
-        //   td3.style = " width:10%; ";
-        let td4 = document.createElement("td");
-        td4.innerHTML = emPDetails[i].hospitalPatientType;
-        //   td4.style = " width:10%; ";
-        let td5 = document.createElement("td");
-        //   td5.style = " width:30%; ";
-
-        // View Btn
-        let viewBtn = document.createElement("button");
-        viewBtn.className ="btn  text-center w-25 me-2 h-25 btn-outline-success bg-success p-1";
-        viewBtn.onclick = function () { emPDView(emPDetails[i]); };
-        let viewIcon = document.createElement("i");
-        viewIcon.className = "bi bi-eye-fill text-white ";
-        viewIcon.style = "font-size:25px; ";
-
-        // Edit Btn
-        let editBtn = document.createElement("button");
-        editBtn.className ="btn  text-center w-25 h-25 me-2 btn-outline-primary bg-primary p-1";
-
-        // editBtn.addEventListener('click' , emPDEdit(emPDetails[i]));
-        editBtn.onclick = function () { emPDEdit(emPDetails[i]); };
-
-        let editIcon = document.createElement("i");
-        editIcon.className = "bi bi-pencil-square text-white ";
-        editIcon.style = "font-size:25px; ";
-
-        // Delete Btn
-        let deleteBtn = document.createElement("button");
-        deleteBtn.className ="btn  text-center w-25 h-25 btn-outline-danger bg-danger p-1";
-        deleteBtn.onclick = function () { emPDDelete(emPDetails[i]); };
-        let deleteIcon = document.createElement("i");
-        deleteIcon.className = "bi bi-trash-fill text-white ";
-        deleteIcon.style = "font-size:25px; ";
-
-        viewBtn.appendChild(viewIcon);
-        editBtn.appendChild(editIcon);
-        deleteBtn.appendChild(deleteIcon);
-
-        td5.appendChild(viewBtn);
-        td5.appendChild(editBtn);
-        td5.appendChild(deleteBtn);
-
-        bodyRows.appendChild(td1);
-        bodyRows.appendChild(td2);
-        bodyRows.appendChild(td3);
-        bodyRows.appendChild(td4);
-        bodyRows.appendChild(td5);
-        tBody.appendChild(bodyRows);
-      }
-    }
-  }
-}
 
 // function for emPatient Details Edit Button
 function emPDEdit(param) {
@@ -1413,30 +1421,32 @@ function emPDEdit(param) {
   emPPDOBEdit.value = param.hospitalPatientDob;
   emPPBGEdit.value = param.hospitalPatientBloodGroup;
 
-
 }
 
 function emPDDelete(param) {
-  param.Patient_Deleted = true;
-  showEPDetails();
+  param.hospitalPatientType = "";
+  showEPDetails(getURL);
 }
 
 function emPDView(param) {
+  
   contentDiv.innerHTML = " ";
 
   let viewDiv = document.createElement("div");
-  viewDiv.className = "w-100 showData-scroll ";
+  viewDiv.className = "w-100 prescription-cols showData-scroll ";
 
   let uPList = document.createElement("ul");
-  let keys=Object.keys(param);
-  console.log(keys);
-  let values=Object.values(param);
-  console.log(values);
   for(let key in param ){
     let li=document.createElement("li");
-    li.innerHTML=key+" : "; 
     let span =document.createElement("span");
-    span.innerHTML=" "+param[key];
+    if(key == "hospitalPatientDob"){
+      li.innerHTML="";
+      li.innerHTML="hospitalPatientAge"+" : ";
+      span.innerHTML=" "+getAge(param[key]);
+    }else{
+      li.innerHTML=key+" : "; 
+      span.innerHTML=" "+param[key];
+    }
     span.className="ms-2 ";
     li.appendChild(span);
     uPList.appendChild(li);
@@ -1460,6 +1470,5 @@ function getAge(dob) {
   }
   // Return the age
   return age;
-}
 }
 };

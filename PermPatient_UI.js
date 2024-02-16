@@ -1,18 +1,136 @@
-
+let getURL="http://localhost:8080/Hospital/getAllPatientsTableData";
+let postURL="http://localhost:8080/Hospital/savePatientsTable";
+var PatientID=1;
 displayPermPatient();
 function displayPermPatient(){
 
-let data = new XMLHttpRequest();
-data.open("GET", "http://localhost:8080/Hospital/getAllPatientsTableData");
-data.send();
+  function showPERMDetails(getURL) {
 
-data.onload = function () {
-  console.log("Get Call Successfull !!!! ");
-  let permPDetails = JSON.parse(this.response);
+    let data = new XMLHttpRequest();
+  data.open("GET", getURL);
+  data.send();
   
+  data.onload = function () {
+    console.log("Get Call Successfull !!!! ");
+    let permPDetails = JSON.parse(this.response);
+  
+    var permPPDTHRDetails = [
+      "Patient ID",
+      "Patient Name",
+      "Patient M.NO",
+      "Patient Type",
+      "Actions",
+    ];
+  
+      {
+      var permPBCDiv = document.getElementById("bottom-div-content");
+      permPBCDiv.innerHTML = " ";
+      permPBCDiv.className = "px-3 py-3";
+  
+      let permPPIBCDiv = document.createElement("div");
+      permPBCDiv.appendChild(permPPIBCDiv);
+      permPBCDiv.className="showData-scroll h-100 py-1";
+  
+      let permPPDTable = document.createElement("table");
+      permPPDTable.className = "w-100";
+  
+      let headRow = document.createElement("tr");
+      for(let x=0; x<permPPDTHRDetails.length;x++){
+        let th= document.createElement("th");
+        th.innerHTML= permPPDTHRDetails[x];
+        th.className="table-text";
+        headRow.appendChild(th);
+      }
+      permPPIBCDiv.appendChild(permPPDTable);
+  
+      let tBody = document.createElement("tbody");
+      tBody.appendChild(headRow);
+      permPPDTable.appendChild(tBody);
+  
+      for (let i = 0; i < permPDetails.length; i++) {
+        if (permPDetails[i].hospitalPatientType == "PERM") {
+          let bodyRows = document.createElement("tr");
+            bodyRows.className = "w-100";
+          let td1 = document.createElement("td");
+          td1.innerHTML = "PERM00" + permPDetails[i].hospitalPatientIdentity;
+          td1.className="table-text ";
+          //   td1.style = " width:10%; ";
+          let td2 = document.createElement("td");
+          td2.innerHTML = permPDetails[i].hospitalPatientName;
+          td2.className="table-text ";
+          //   td2.style = "width:10%; ";
+          let td3 = document.createElement("td");
+          td3.innerHTML = permPDetails[i].hospitalPatientPhoneNumber;
+          td3.className="table-text ";
+          //   td3.style = " width:10%; ";
+          let td4 = document.createElement("td");
+          td4.innerHTML = permPDetails[i].hospitalPatientType;
+          td4.className="table-text ";
+          //   td4.style = " width:10%; ";
+          let td5 = document.createElement("td");
+          td5.className="table-text ";
+          //   td5.style = " width:30%; ";
+  
+          // View Btn
+          let viewBtn = document.createElement("button");
+          viewBtn.className =
+            "btn  text-center  me-2 h-25 btn-outline-success bg-success p-1";
+          viewBtn.onclick = function () {
+            permPDView(permPDetails[i]);
+          };
+          let viewIcon = document.createElement("i");
+          viewIcon.className = "bi bi-eye-fill text-white ";
+          viewIcon.style = "font-size:25px; ";
+  
+          // Edit Btn
+          let editBtn = document.createElement("button");
+          editBtn.className =
+            "btn  text-center  h-25 me-2 btn-outline-primary bg-primary p-1";
+  
+          // editBtn.addEventListener('click' , permPDEdit(permPDetails[i]));
+          editBtn.onclick = function () {
+            permPDEdit(permPDetails[i]);
+          };
+  
+          let editIcon = document.createElement("i");
+          editIcon.className = "bi bi-pencil-square text-white ";
+          editIcon.style = "font-size:25px; ";
+  
+          // Delete Btn
+          let deleteBtn = document.createElement("button");
+          deleteBtn.className =
+            "btn  text-center  h-25 btn-outline-danger bg-danger p-1";
+          deleteBtn.onclick = function () {
+            permPDDelete(permPDetails[i]);
+          };
+          let deleteIcon = document.createElement("i");
+          deleteIcon.className = "bi bi-trash-fill text-white ";
+          deleteIcon.style = "font-size:25px; ";
+  
+          viewBtn.appendChild(viewIcon);
+          editBtn.appendChild(editIcon);
+          deleteBtn.appendChild(deleteIcon);
+  
+          td5.appendChild(viewBtn);
+          td5.appendChild(editBtn);
+          td5.appendChild(deleteBtn);
+  
+          bodyRows.appendChild(td1);
+          bodyRows.appendChild(td2);
+          bodyRows.appendChild(td3);
+          bodyRows.appendChild(td4);
+          bodyRows.appendChild(td5);
+  
+          tBody.appendChild(bodyRows);
+        }
+      }
+    }
+    }
+  };
+
 var PermPatientDetails = {
   hospitalPatientType: "PERM",
-  hospitalPatientIdentity: null,
+  hospitalPatientIdentity: PatientID,
   hospitalPatientName: null,
   hospitalPatientAddress: null,
   hospitalPatientPhoneNumber: null,
@@ -26,8 +144,6 @@ var PermPatientDetails = {
   hospitalPatientCurrentProblem: null,
   hospitalPatientPreviousProblem: null,
   hospitalPatientDoctor: null,
-  hospitalPatientAppointment: null,
-  hospitalPatientBed: null,
   hospitalPatientMedicine: null,
   hospitalPatientTest: null,
   hospitalPatientScan : null
@@ -56,27 +172,27 @@ function permPatientInfo() {
 // Functions to handle button clicks
 function personalInfo() {
   personalInfoForm();
-  showPERMDetails();
+  showPERMDetails(getURL);
 }
 
 function contactInfo() {
   contactInfoForm();
-  showPERMDetails();
+  showPERMDetails(getURL);
 }
 
 function healthConcerns() {
   healthConcernsForm();
-  showPERMDetails();
+  showPERMDetails(getURL);
 }
 
 function appointments() {
   appointmentsForm();
-  showPERMDetails();
+  showPERMDetails(getURL);
 }
 
 function prescription() {
   prescriptionForm();
-  showPERMDetails();
+  showPERMDetails(getURL);
 }
 
 // TopDivNavTabs ⬇️⬇️⬇️
@@ -742,7 +858,7 @@ function appointmentsForm() {
             "Dr. Manish Jain",
             "Dr. P Raghuram Reddy",
             "Dr. Puneet Dwevedi",
-            "Dr. Puneet Dwevedi",
+            "Dr. Sujeet Dwevedi",
             "Dr. V.s.p. Bashyam"
         ]
     },
@@ -971,7 +1087,7 @@ function prescriptionForm() {
     let permPPPMCBoxes = document.createElement("input");
     permPPPMCBoxes.type = "checkbox";
     permPPPMCBoxes.value = x;
-    permPPPMCBoxes.className = "mx-2 ";
+    permPPPMCBoxes.className = "mx-2 medicine-selector";
     permPPPMCBoxes.id = "permPatient-prescription-medicine-" + x;
 
     let permPPPMCBLabels = document.createElement("label");
@@ -1065,7 +1181,7 @@ function prescriptionForm() {
     let permPPPTCBoxes = document.createElement("input");
     permPPPTCBoxes.type = "checkbox";
     permPPPTCBoxes.value = y;
-    permPPPTCBoxes.className = "mx-2 ";
+    permPPPTCBoxes.className = "mx-2 test-selector ";
     permPPPTCBoxes.id = "permPatient-prescription-test-" + y;
 
     let permPPPTCBLabels = document.createElement("label");
@@ -1120,7 +1236,7 @@ function prescriptionForm() {
     let permPPPSCBoxes = document.createElement("input");
     permPPPSCBoxes.type = "checkbox";
     permPPPSCBoxes.value = z;
-    permPPPSCBoxes.className = "mx-2 ";
+    permPPPSCBoxes.className = "mx-2 scan-selector";
     permPPPSCBoxes.id = "permPatient-prescription-scan-" + z;
 
     let permPPPSCBLabels = document.createElement("label");
@@ -1269,17 +1385,12 @@ function permPPDetailsSubmit() {
    console.log(checkedMedicine);
    console.log(checkedTests);
    console.log(checkedScans);
-
    console.log(PermPatientDetails);
    
-   postCall(PermPatientDetails,"http://localhost:8080/Hospital/savePatientsTable",submitBtn);
+   postCall(PermPatientDetails,postURL,submitBtn);
    
   form.reset();
-  checkedMedicine="";
-  checkedTests="";
-  checkedScans="";
-  console.log("cleaning the data .......");
-  PermPatientDetails={};
+
 }
 
 function postCall(obj,url,btn){
@@ -1294,123 +1405,19 @@ function postCall(obj,url,btn){
         if (rqst.status === 201) {
           console.log("Post Call Successfull !!!");
           btn.style="display:none;";
+          PatientID++;
+          showPERMDetails(getURL);
+          console.log("cleaning the data .......");
+          checkedMedicine="";
+          checkedTests="";
+          checkedScans="";
+          PermPatientDetails={};
          }else{
           localStorage.setItem("inPatientDetails" , data);
          }
   };
 }
-console.log(permPDetails);
 
-function showPERMDetails() {
-
-  var permPPDTHRDetails = [
-    "Patient ID",
-    "Patient Name",
-    "Patient M.NO",
-    "Patient Type",
-    "Actions",
-  ];
-
-    {
-    var permPBCDiv = document.getElementById("bottom-div-content");
-    permPBCDiv.innerHTML = " ";
-    permPBCDiv.className = "px-3 py-3";
-
-    let permPPIBCDiv = document.createElement("div");
-    permPBCDiv.appendChild(permPPIBCDiv);
-    permPBCDiv.className="showData-scroll h-100 py-1";
-
-    let permPPDTable = document.createElement("table");
-    permPPDTable.className = "w-100";
-
-    let headRow = document.createElement("tr");
-    for(let x=0; x<permPPDTHRDetails.length;x++){
-      let th= document.createElement("th");
-      th.innerHTML= permPPDTHRDetails[x];
-      headRow.appendChild(th);
-    }
-    permPPIBCDiv.appendChild(permPPDTable);
-
-    let tBody = document.createElement("tbody");
-    tBody.appendChild(headRow);
-    permPPDTable.appendChild(tBody);
-
-    for (let i = 0; i < permPDetails.length; i++) {
-      if (permPDetails[i].hospitalPatientType == "PERM") {
-        let bodyRows = document.createElement("tr");
-        //   bodyRows.className = "w-100";
-
-        let td1 = document.createElement("td");
-        td1.innerHTML = "PERM00" + permPDetails[i].hospitalPatientId;
-        //   td1.style = " width:10%; ";
-        let td2 = document.createElement("td");
-        td2.innerHTML = permPDetails[i].hospitalPatientName;
-        //   td2.style = "width:10%; ";
-        let td3 = document.createElement("td");
-        td3.innerHTML = permPDetails[i].hospitalPatientPhoneNumber;
-        //   td3.style = " width:10%; ";
-        let td4 = document.createElement("td");
-        td4.innerHTML = permPDetails[i].hospitalPatientType;
-        //   td4.style = " width:10%; ";
-        let td5 = document.createElement("td");
-        //   td5.style = " width:30%; ";
-
-        // View Btn
-        let viewBtn = document.createElement("button");
-        viewBtn.className =
-          "btn  text-center w-25 me-2 h-25 btn-outline-success bg-success p-1";
-        viewBtn.onclick = function () {
-          permPDView(permPDetails[i]);
-        };
-        let viewIcon = document.createElement("i");
-        viewIcon.className = "bi bi-eye-fill text-white ";
-        viewIcon.style = "font-size:25px; ";
-
-        // Edit Btn
-        let editBtn = document.createElement("button");
-        editBtn.className =
-          "btn  text-center w-25 h-25 me-2 btn-outline-primary bg-primary p-1";
-
-        // editBtn.addEventListener('click' , permPDEdit(permPDetails[i]));
-        editBtn.onclick = function () {
-          permPDEdit(permPDetails[i]);
-        };
-
-        let editIcon = document.createElement("i");
-        editIcon.className = "bi bi-pencil-square text-white ";
-        editIcon.style = "font-size:25px; ";
-
-        // Delete Btn
-        let deleteBtn = document.createElement("button");
-        deleteBtn.className =
-          "btn  text-center w-25 h-25 btn-outline-danger bg-danger p-1";
-        deleteBtn.onclick = function () {
-          permPDDelete(permPDetails[i]);
-        };
-        let deleteIcon = document.createElement("i");
-        deleteIcon.className = "bi bi-trash-fill text-white ";
-        deleteIcon.style = "font-size:25px; ";
-
-        viewBtn.appendChild(viewIcon);
-        editBtn.appendChild(editIcon);
-        deleteBtn.appendChild(deleteIcon);
-
-        td5.appendChild(viewBtn);
-        td5.appendChild(editBtn);
-        td5.appendChild(deleteBtn);
-
-        bodyRows.appendChild(td1);
-        bodyRows.appendChild(td2);
-        bodyRows.appendChild(td3);
-        bodyRows.appendChild(td4);
-        bodyRows.appendChild(td5);
-
-        tBody.appendChild(bodyRows);
-      }
-    }
-
-  }
-}
 
 // function for permPatient Details Edit Button
 function permPDEdit(param) {
@@ -1430,26 +1437,28 @@ function permPDEdit(param) {
 }
 
 function permPDDelete(param) {
-  param.Patient_Deleted = true;
-  showPERMDetails();
+  param.hospitalPatientType = "";
+  showPERMDetails(getURL);
 }
 
 function permPDView(param) {
   contentDiv.innerHTML = " ";
 
   let viewDiv = document.createElement("div");
-  viewDiv.className = "w-100 showData-scroll ";
+  viewDiv.className = "w-100 prescription-cols showData-scroll ";
 
   let uPList = document.createElement("ul");
-  let keys=Object.keys(param);
-  console.log(keys);
-  let values=Object.values(param);
-  console.log(values);
   for(let key in param ){
     let li=document.createElement("li");
-    li.innerHTML=key+" : "; 
     let span =document.createElement("span");
-    span.innerHTML=" "+param[key];
+    if(key == "hospitalPatientDob"){
+      li.innerHTML="";
+      li.innerHTML="hospitalPatientAge"+" : ";
+      span.innerHTML=" "+getAge(param[key]);
+    }else{
+      li.innerHTML=key+" : "; 
+      span.innerHTML=" "+param[key];
+    }
     span.className="ms-2 ";
     li.appendChild(span);
     uPList.appendChild(li);
@@ -1473,6 +1482,5 @@ function getAge(dob) {
   }
   // Return the age
   return age;
-}
 }
 };
