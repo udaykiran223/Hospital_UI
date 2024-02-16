@@ -200,7 +200,7 @@
       th {
         border: 2px solid black;
       }
-      .prescription-scroll {
+      .prescription-scroll,.showData-scroll {
         overflow-y: scroll;
         scrollbar-width: thin;
       }
@@ -212,21 +212,10 @@
       <!-- Side NavBar -->
       <div class="col-2" id="sidebar-div">
         <div class="sidebar text-center">
-          <a class="btn" id="sidebar-inPatient-btn" onclick="inPatientInfo()"
-            >In Patient</a
-          >
-          <a class="btn" id="sidebar-outPatient-btn" onclick="outPatientInfo()"
-            >Out Patient</a
-          >
-          <a class="btn" id="sidebar-emPatient-btn" onclick="emPatientInfo()"
-            >Emergency</a
-          >
-          <a
-            class="btn"
-            id="sidebar-permPatient-btn"
-            onclick="permPatientInfo()"
-            >Permanent</a
-          >
+          <a class="btn" id="sidebar-inPatient-btn" onclick="displayInPatient()">In Patient</a>
+          <a class="btn" id="sidebar-outPatient-btn" onclick="outPatientInfo()">Out Patient</a>
+          <a class="btn" id="sidebar-emPatient-btn" onclick="emPatientInfo()">Emergency</a>
+          <a class="btn" id="sidebar-permPatient-btn" onclick="permPatientInfo()" >Permanent</a>
         </div>
       </div>
       <!-- Content -->
@@ -262,13 +251,11 @@
               <img
                 class="hospital-imgs"
                 src="https://img.freepik.com/free-photo/tracking-computing-talk-lens-flare-close-up_1134-674.jpg?w=2000&t=st=1706032777~exp=1706033377~hmac=75c06663f996bd0fc02ac9b00d543e5ddec91e57b14e01764fa18aa68f9fdbfe"
-                alt="hospital_img2"
-              />
+                alt="hospital_img2"/>
               <img
                 class="hospital-imgs"
                 src="https://img.freepik.com/free-photo/doctor-writing-patient-daily-report-exmaination_53876-14934.jpg?w=2000&t=st=1706033660~exp=1706034260~hmac=968faaf89e854e0321b5842a60ab9ac84e64fb5a4a75cec6dfbc23826d0a8438"
-                alt="hospital_img2.2"
-              />
+                alt="hospital_img2.2"/>
             </div>
             </div>
           </div>

@@ -1,15 +1,47 @@
+
+displayEmPatient();
+function displayEmPatient(){
+
+let data = new XMLHttpRequest();
+data.open("GET", "http://localhost:8080/Hospital/getAllPatientsTableData");
+data.send();
+
+data.onload = function () {
+  console.log("Get Call Successfull !!!! ");
+  let emPDetails = JSON.parse(this.response);
+
+var EmPatientDetails = {
+  hospitalPatientType: "EM",
+  hospitalPatientIdentity: null,
+  hospitalPatientName: null,
+  hospitalPatientAddress: null,
+  hospitalPatientPhoneNumber: null,
+  hospitalPatientDob: null,
+  hospitalPatientBloodGroup: null,
+  hospitalPatientAlternateNumber: null,
+  hospitalPatientEmailid: null,
+  hospitalPatientGuardianName: null,
+  hospitalPatientGuardianPhoneNumber: null,
+  hospitalPatientGuardianEmailid: null,
+  hospitalPatientCurrentProblem: null,
+  hospitalPatientPreviousProblem: null,
+  hospitalPatientDoctor: null,
+  hospitalPatientAppointment: null,
+  hospitalPatientBed: null,
+  hospitalPatientMedicine: null,
+  hospitalPatientTest: null,
+  hospitalPatientScan : null
+};
+
 // div for top div navtabs
 var topDivNavTabs = document.getElementById("top-div-navtabs");
-
 // Div for showing the content in top div
 var contentDiv = document.getElementById("top-div-content");
 contentDiv.className = "px-3 py-1 ";
-
 // div for bottom div
 var bottomContentDiv = document.getElementById("bottom-div-content");
 
 emPatientInfo();
-
 function emPatientInfo() {
   let navBarEPBtn = document.getElementById("sidebar-emPatient-btn");
   navBarEPBtn.className = "active ";
@@ -1127,56 +1159,40 @@ function emPPIDetailsSubmit() {
   let form = document.getElementById("emPatient-personalInfo-form");
   var emPPName = document.getElementById("empatient-patient-name").value;
   var emPPAddress = document.getElementById("empatient-patient-address").value;
-  var emPPMNumber = document.getElementById(
-    "empatient-patient-phone-number"
-  ).value;
+  var emPPMNumber = document.getElementById("empatient-patient-phone-number").value;
   var emPPDOB = document.getElementById("empatient-patient-dOB").value;
   var emPPBG = document.getElementById("empatient-patient-bg").value;
 
   var isDeleted = false;
 
-  const emPPDetailsObject = {
-    Patient_Name: emPPName,
-    Patient_Address: emPPAddress,
-    Patient_MN: emPPMNumber,
-    Patient_DOB: emPPDOB,
-    Patient_BG: emPPBG,
-    Patient_Deleted: isDeleted,
-  };
-
-  console.log(emPPDetailsObject);
-
-  //   if (localStorage.getItem("emPatientDetails") == null) {
-  //     let a = [];
-
-  //     a.push(emPPDetailsObject);
-  //     localStorage.setItem("emPatientDetails", JSON.stringify(a));
-  //     showEPDetails();
-  //   } else {
-  //     let emPatientDetails = JSON.parse(localStorage.getItem("emPatientDetails"));
-  //     emPatientDetails.push(emPPDetailsObject);
-
-  //     localStorage.setItem("emPatientDetails", JSON.stringify(emPatientDetails));
-  //     showEPDetails();
-  //   }
+  EmPatientDetails.hospitalPatientName=emPPName;
+  EmPatientDetails.hospitalPatientAddress=emPPAddress;
+  EmPatientDetails.hospitalPatientPhoneNumber=emPPMNumber;
+  EmPatientDetails.hospitalPatientDob=emPPDOB;
+  EmPatientDetails.hospitalPatientBloodGroup=emPPBG
+  console.log(emPPName);
+  console.log(emPPAddress);
+  console.log(emPPMNumber);
+  console.log(emPPDOB);
+  console.log(emPPBG);
 
   form.reset();
+contactInfo();
 }
 
 function emPCIDetailsSubmit() {
   let form = document.getElementById("emPatient-contactInfo-form");
-  let emPAPNumber = document.getElementById(
-    "empatient-patient-alternate-phone-number"
-  ).value;
+  let emPAPNumber = document.getElementById("empatient-patient-alternate-phone-number").value;
   let emPEmail = document.getElementById("empatient-patient-email-id").value;
-  let emPGName = document.getElementById(
-    "empatient-patient-gaurdian-name"
-  ).value;
-  let emPGPNumber = document.getElementById(
-    "empatient-gaurdian-phone-number"
-  ).value;
+  let emPGName = document.getElementById("empatient-patient-gaurdian-name").value;
+  let emPGPNumber = document.getElementById("empatient-gaurdian-phone-number").value;
   let emPGEmail = document.getElementById("empatient-gaurdian-email-id").value;
 
+  EmPatientDetails.hospitalPatientAlternateNumber = emPAPNumber;
+  EmPatientDetails.hospitalPatientEmailid = emPEmail;
+  EmPatientDetails.hospitalPatientGuardianName = emPGName;
+  EmPatientDetails.hospitalPatientGuardianPhoneNumber = emPGPNumber;
+  EmPatientDetails.hospitalPatientGuardianEmailid = emPGEmail;
   console.log(emPAPNumber);
   console.log(emPEmail);
   console.log(emPGName);
@@ -1184,50 +1200,106 @@ function emPCIDetailsSubmit() {
   console.log(emPGEmail);
 
   form.reset();
+  healthConcerns();
 }
 
 function emPHCDetailsSubmit() {
   let form = document.getElementById("emPatient-healthConcerns-form");
-  let emPPCProblems = document.getElementById(
-    "empatient-current-problems"
-  ).value;
-  let emPPPProblems = document.getElementById(
-    "empatient-previous-problems"
-  ).value;
+  let emPPCProblems = document.getElementById("empatient-current-problems").value;
+  let emPPPProblems = document.getElementById("empatient-previous-problems").value;
 
+  EmPatientDetails.hospitalPatientCurrentProblem=emPPCProblems;
+  EmPatientDetails.hospitalPatientPreviousProblem=emPPPProblems;
   console.log(emPPCProblems);
   console.log(emPPPProblems);
 
   form.reset();
+  appointments();
 }
 
 function emPADetailsSubmit() {
   let form = document.getElementById("emPatient-appointments-form");
+  let emPPASpecialist = document.getElementById("empatient-appointment-specialist").value;
 
-  let emPPASpecialist = document.getElementById(
-    "empatient-appointment-specialist"
-  ).value;
-  let emPPASDoctor = document.getElementById(
-    "empatient-appointment-speciality-doctor"
-  ).value;
-
+  EmPatientDetails.hospitalPatientDoctor=emPPASpecialist;
   console.log(emPPASpecialist);
-  console.log(emPPASDoctor);
-
   form.reset();
+  prescription();
 }
 
 function emPPDetailsSubmit() {
   let form = document.getElementById("emPatient-prescription-form");
+  let submitBtn= document.getElementById("emPatient-prescription-submitBtn");
+   
+  let checkedMedicine = "";
+  let checkedTests = "";
+  let checkedScans = "";
 
+   // Loop through checkboxes in medicine div
+   document.querySelectorAll(".medicine-selector").forEach(function(checkbox) {
+       if (checkbox.checked) {
+          //  checkedMedicine.push(checkbox.value);
+          checkedMedicine +=checkbox.value+", ";
+       }
+   });
+
+   // Loop through checkboxes in tests div
+   document.querySelectorAll(".test-selector").forEach(function(checkbox) {
+       if (checkbox.checked) {
+          //  checkedTests.push(checkbox.value);
+          checkedTests +=checkbox.value+", ";
+       }
+   });
+
+   // Loop through checkboxes in scans div
+   document.querySelectorAll(".scan-selector").forEach(function(checkbox) {
+       if (checkbox.checked) {
+          //  checkedScans.push(checkbox.value);
+          checkedScans +=checkbox.value+", ";
+       }
+   });
+
+   EmPatientDetails.hospitalPatientMedicine=checkedMedicine;
+   EmPatientDetails.hospitalPatientTest=checkedTests;
+   EmPatientDetails.hospitalPatientScan=checkedScans;
+
+   console.log(checkedMedicine);
+   console.log(checkedTests);
+   console.log(checkedScans);
+   console.log(EmPatientDetails);
+   
+   postCall(EmPatientDetails,"http://localhost:8080/Hospital/savePatientsTable",submitBtn);
+   
   form.reset();
+  checkedMedicine="";
+  checkedTests="";
+  checkedScans="";
+  console.log("cleaning the data .......");
+  EmPatientDetails={};
 }
 
-// emPatientDetails Array
-var emPDetails = JSON.parse(localStorage.getItem("emPatientDetails"));
+function postCall(obj,url,btn){
+  
+  let data = JSON.stringify(obj);
+      var rqst = new XMLHttpRequest();
+      rqst.open("POST", url);
+      rqst.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+      rqst.send(data);
+
+      rqst.onload = function () {
+        if (rqst.status === 201) {
+          console.log("Post Call Successfull !!!");
+          btn.style="display:none;";
+         }else{
+          localStorage.setItem("inPatientDetails" , data);
+         }
+  };
+}
+
 console.log(emPDetails);
 
 function showEPDetails() {
+
   var emPPDTHRDetails = [
     "Patient ID",
     "Patient Name",
@@ -1236,121 +1308,93 @@ function showEPDetails() {
     "Actions",
   ];
 
-  var emPBCDiv = document.getElementById("bottom-div-content");
-  emPBCDiv.innerHTML = "Load the Emergency Patient Details using API's  ";
+  {
+    var emPBCDiv = document.getElementById("bottom-div-content");
+    emPBCDiv.innerHTML = " ";
+    emPBCDiv.className = "px-3 py-3";
 
-  // {
-  //   var emPBCDiv = document.getElementById("bottom-div-content");
-  //   emPBCDiv.emnerHTML = " ";
-  //   emPBCDiv.className = "px-3 py-3";
+    let emPPIBCDiv = document.createElement("div");
+    emPBCDiv.appendChild(emPPIBCDiv);
+    emPBCDiv.className="showData-scroll h-100 py-1";
 
-  //   let emPPIBCDiv = document.createElement("div");
-  //   emPBCDiv.appendChild(emPPIBCDiv);
+    let emPPDTable = document.createElement("table");
+    emPPDTable.className = "w-100";
 
-  //   let emPPDTable = document.createElement("table");
-  //   emPPDTable.className = "w-100";
+    let headRow = document.createElement("tr");
+    for(let x=0; x<emPPDTHRDetails.length;x++){
+      let th= document.createElement("th");
+      th.innerHTML= emPPDTHRDetails[x];
+      headRow.appendChild(th);
+    }
+    emPPIBCDiv.appendChild(emPPDTable);
 
-  //   let headRow = document.createElement("tr");
+    let tBody = document.createElement("tbody");
+    tBody.appendChild(headRow);
+    emPPDTable.appendChild(tBody);
 
-  //   let th1 = document.createElement("th");
-  //   th1.innerText = emPPDTHRDetails[0];
-  //   let th2 = document.createElement("th");
-  //   th2.innerHTML = emPPDTHRDetails[1];
-  //   let th3 = document.createElement("th");
-  //   th3.innerHTML = emPPDTHRDetails[2];
-  //   let th4 = document.createElement("th");
-  //   th4.innerHTML = emPPDTHRDetails[3];
-  //   let th5 = document.createElement("th");
-  //   th5.innerHTML = emPPDTHRDetails[4];
+    for (let i = 0; i < emPDetails.length; i++) {
+      if (emPDetails[i].hospitalPatientType == "EM") {
+        let bodyRows = document.createElement("tr");
+        //   bodyRows.className = "w-100";
+        let td1 = document.createElement("td");
+        td1.innerHTML = "EP00" + emPDetails[i].hospitalPatientId;
+        //   td1.style = " width:10%; ";
+        let td2 = document.createElement("td");
+        td2.innerHTML = emPDetails[i].hospitalPatientName;
+        //   td2.style = "width:10%; ";
+        let td3 = document.createElement("td");
+        td3.innerHTML = emPDetails[i].hospitalPatientPhoneNumber;
+        //   td3.style = " width:10%; ";
+        let td4 = document.createElement("td");
+        td4.innerHTML = emPDetails[i].hospitalPatientType;
+        //   td4.style = " width:10%; ";
+        let td5 = document.createElement("td");
+        //   td5.style = " width:30%; ";
 
-  //   headRow.appendChild(th1);
-  //   headRow.appendChild(th2);
-  //   headRow.appendChild(th3);
-  //   headRow.appendChild(th4);
-  //   headRow.appendChild(th5);
+        // View Btn
+        let viewBtn = document.createElement("button");
+        viewBtn.className ="btn  text-center w-25 me-2 h-25 btn-outline-success bg-success p-1";
+        viewBtn.onclick = function () { emPDView(emPDetails[i]); };
+        let viewIcon = document.createElement("i");
+        viewIcon.className = "bi bi-eye-fill text-white ";
+        viewIcon.style = "font-size:25px; ";
 
-  //   // emPPDTable.appendChild(headRow);
-  //   emPPIBCDiv.appendChild(emPPDTable);
+        // Edit Btn
+        let editBtn = document.createElement("button");
+        editBtn.className ="btn  text-center w-25 h-25 me-2 btn-outline-primary bg-primary p-1";
 
-  //   let tBody = document.createElement("tbody");
-  //   tBody.appendChild(headRow);
-  //   emPPDTable.appendChild(tBody);
+        // editBtn.addEventListener('click' , emPDEdit(emPDetails[i]));
+        editBtn.onclick = function () { emPDEdit(emPDetails[i]); };
 
-  //   for (let i = 0; i < emPDetails.length; i++) {
-  //     if (emPDetails[i].Patient_Deleted == false) {
-  //       let bodyRows = document.createElement("tr");
-  //       //   bodyRows.className = "w-100";
+        let editIcon = document.createElement("i");
+        editIcon.className = "bi bi-pencil-square text-white ";
+        editIcon.style = "font-size:25px; ";
 
-  //       let td1 = document.createElement("td");
-  //       td1.innerHTML = "EP00" + i;
-  //       //   td1.style = " width:10%; ";
-  //       let td2 = document.createElement("td");
-  //       td2.innerHTML = emPDetails[i].Patient_Name;
-  //       //   td2.style = "width:10%; ";
-  //       let td3 = document.createElement("td");
-  //       td3.innerHTML = emPDetails[i].Patient_MN;
-  //       //   td3.style = " width:10%; ";
-  //       let td4 = document.createElement("td");
-  //       td4.innerHTML = "EM";
-  //       //   td4.style = " width:10%; ";
-  //       let td5 = document.createElement("td");
-  //       //   td5.style = " width:30%; ";
+        // Delete Btn
+        let deleteBtn = document.createElement("button");
+        deleteBtn.className ="btn  text-center w-25 h-25 btn-outline-danger bg-danger p-1";
+        deleteBtn.onclick = function () { emPDDelete(emPDetails[i]); };
+        let deleteIcon = document.createElement("i");
+        deleteIcon.className = "bi bi-trash-fill text-white ";
+        deleteIcon.style = "font-size:25px; ";
 
-  //       // View Btn
-  //       let viewBtn = document.createElement("button");
-  //       viewBtn.className =
-  //         "btn  text-center w-25 me-2 h-25 btn-outline-success bg-success p-1";
-  //       viewBtn.onclick = function () {
-  //         emPDView(emPDetails[i]);
-  //       };
-  //       let viewIcon = document.createElement("i");
-  //       viewIcon.className = "bi bi-eye-fill text-white ";
-  //       viewIcon.style = "font-size:25px; ";
+        viewBtn.appendChild(viewIcon);
+        editBtn.appendChild(editIcon);
+        deleteBtn.appendChild(deleteIcon);
 
-  //       // Edit Btn
-  //       let editBtn = document.createElement("button");
-  //       editBtn.className =
-  //         "btn  text-center w-25 h-25 me-2 btn-outline-primary bg-primary p-1";
+        td5.appendChild(viewBtn);
+        td5.appendChild(editBtn);
+        td5.appendChild(deleteBtn);
 
-  //       // editBtn.addEventListener('click' , emPDEdit(emPDetails[i]));
-  //       editBtn.onclick = function () {
-  //         emPDEdit(emPDetails[i]);
-  //       };
-
-  //       let editIcon = document.createElement("i");
-  //       editIcon.className = "bi bi-pencil-square text-white ";
-  //       editIcon.style = "font-size:25px; ";
-
-  //       // Delete Btn
-  //       let deleteBtn = document.createElement("button");
-  //       deleteBtn.className =
-  //         "btn  text-center w-25 h-25 btn-outline-danger bg-danger p-1";
-  //       deleteBtn.onclick = function () {
-  //         emPDDelete(emPDetails[i]);
-  //       };
-  //       let deleteIcon = document.createElement("i");
-  //       deleteIcon.className = "bi bi-trash-fill text-white ";
-  //       deleteIcon.style = "font-size:25px; ";
-
-  //       viewBtn.appendChild(viewIcon);
-  //       editBtn.appendChild(editIcon);
-  //       deleteBtn.appendChild(deleteIcon);
-
-  //       td5.appendChild(viewBtn);
-  //       td5.appendChild(editBtn);
-  //       td5.appendChild(deleteBtn);
-
-  //       bodyRows.appendChild(td1);
-  //       bodyRows.appendChild(td2);
-  //       bodyRows.appendChild(td3);
-  //       bodyRows.appendChild(td4);
-  //       bodyRows.appendChild(td5);
-
-  //       tBody.appendChild(bodyRows);
-  //     }
-  //   }
-
-  // }
+        bodyRows.appendChild(td1);
+        bodyRows.appendChild(td2);
+        bodyRows.appendChild(td3);
+        bodyRows.appendChild(td4);
+        bodyRows.appendChild(td5);
+        tBody.appendChild(bodyRows);
+      }
+    }
+  }
 }
 
 // function for emPatient Details Edit Button
@@ -1363,11 +1407,13 @@ function emPDEdit(param) {
   let emPPDOBEdit = document.getElementById("empatient-patient-dOB");
   let emPPBGEdit = document.getElementById("empatient-patient-bg");
 
-  emPPNEdit.value = param.Patient_Name;
-  emPPAEdit.value = param.Patient_Address;
-  emPPMNEdit.value = param.Patient_MN;
-  emPPDOBEdit.value = param.Patient_DOB;
-  emPPBGEdit.value = param.Patient_BG;
+  emPPNEdit.value = param.hospitalPatientName;
+  emPPAEdit.value = param.hospitalPatientAddress;
+  emPPMNEdit.value = param.hospitalPatientPhoneNumber;
+  emPPDOBEdit.value = param.hospitalPatientDob;
+  emPPBGEdit.value = param.hospitalPatientBloodGroup;
+
+
 }
 
 function emPDDelete(param) {
@@ -1379,67 +1425,23 @@ function emPDView(param) {
   contentDiv.innerHTML = " ";
 
   let viewDiv = document.createElement("div");
-  viewDiv.className = "w-100 ";
+  viewDiv.className = "w-100 showData-scroll ";
 
   let uPList = document.createElement("ul");
-
-  let liPID = document.createElement("li");
-  liPID.innerHTML = "Patient ID : ";
-
-  let spanPID = document.createElement("span");
-  spanPID.textContent = "EP";
-  spanPID.className = " ms-2 ";
-
-  let liPN = document.createElement("li");
-  liPN.innerHTML = "Patient Name : ";
-
-  let spanPN = document.createElement("span");
-  spanPN.textContent = param.Patient_Name;
-  spanPN.className + " ms-2 ";
-
-  let liPAge = document.createElement("li");
-  liPAge.innerHTML = "Patient Age : ";
-
-  let spanPAge = document.createElement("span");
-  spanPAge.textContent = getAge(param.Patient_DOB);
-  spanPAge.className = " ms-2 ";
-
-  let liPMN = document.createElement("li");
-  liPMN.innerHTML = "Patient M-No : ";
-
-  let spanPMN = document.createElement("span");
-  spanPMN.textContent = param.Patient_MN;
-  spanPMN.className = " ms-2 ";
-
-  let liPBG = document.createElement("li");
-  liPBG.innerHTML = "Patient Blood Group : ";
-
-  let spanPBG = document.createElement("span");
-  spanPBG.textContent = param.Patient_BG + ".";
-  spanPBG.className = "ms-2 ";
-
-  let liPA = document.createElement("li");
-  liPA.innerHTML = "Patient Address : ";
-
-  let spanPA = document.createElement("span");
-  spanPA.textContent = param.Patient_Address + ".";
-  spanPA.className = "ms-2 ";
-
-  liPID.appendChild(spanPID);
-  uPList.appendChild(liPID);
-  liPN.appendChild(spanPN);
-  uPList.appendChild(liPN);
-  liPAge.appendChild(spanPAge);
-  uPList.appendChild(liPAge);
-  liPMN.appendChild(spanPMN);
-  uPList.appendChild(liPMN);
-  liPBG.appendChild(spanPBG);
-  uPList.appendChild(liPBG);
-  liPA.appendChild(spanPA);
-  uPList.appendChild(liPA);
-
+  let keys=Object.keys(param);
+  console.log(keys);
+  let values=Object.values(param);
+  console.log(values);
+  for(let key in param ){
+    let li=document.createElement("li");
+    li.innerHTML=key+" : "; 
+    let span =document.createElement("span");
+    span.innerHTML=" "+param[key];
+    span.className="ms-2 ";
+    li.appendChild(span);
+    uPList.appendChild(li);
+  }
   viewDiv.appendChild(uPList);
-
   contentDiv.appendChild(viewDiv);
 }
 
@@ -1459,3 +1461,5 @@ function getAge(dob) {
   // Return the age
   return age;
 }
+}
+};

@@ -1,13 +1,45 @@
+
+function displayInPatient(){
+// var inPDetails;
+let data = new XMLHttpRequest();
+data.open("GET", "http://localhost:8080/Hospital/getAllPatientsTableData");
+data.send();
+
+data.onload = function () {
+  console.log("Get Call Successfull !!!! ");
+   inPDetails = JSON.parse(this.response);
+  
+var InPatientDetails = {
+  hospitalPatientType: "IN",
+  hospitalPatientIdentity: null,
+  hospitalPatientName: null,
+  hospitalPatientAddress: null,
+  hospitalPatientPhoneNumber: null,
+  hospitalPatientDob: null,
+  hospitalPatientBloodGroup: null,
+  hospitalPatientAlternateNumber: null,
+  hospitalPatientEmailid: null,
+  hospitalPatientGuardianName: null,
+  hospitalPatientGuardianPhoneNumber: null,
+  hospitalPatientGuardianEmailid: null,
+  hospitalPatientCurrentProblem: null,
+  hospitalPatientPreviousProblem: null,
+  hospitalPatientDoctor: null,
+  hospitalPatientAppointment: null,
+  hospitalPatientBed: null,
+  hospitalPatientMedicine: null,
+  hospitalPatientTest: null,
+  hospitalPatientScan : null
+};
+
 // div for top div navtabs
 var topDivNavTabs = document.getElementById("top-div-navtabs");
-
 // Div for showing the content in top div
 var contentDiv = document.getElementById("top-div-content");
 contentDiv.className = "px-3 py-1 ";
-
 // div for bottom div
 var bottomContentDiv = document.getElementById("bottom-div-content");
-
+  inPatientInfo();
 function inPatientInfo() {
   let navBarIPBtn = document.getElementById("sidebar-inPatient-btn");
   navBarIPBtn.className = "active ";
@@ -134,13 +166,13 @@ function personalInfoForm() {
   contentDiv.appendChild(inPPPIForm);
   var resultdiv = document.createElement("div");
   inPPPIForm.appendChild(resultdiv);
-  resultdiv.className="row ";
+  resultdiv.className = "row ";
   resultdiv.style = "display:flex; flex-wrap:wrap; gap:10px;";
 
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
   leftcol.className = " col-4 px-2 ";
-  leftcol.style="flex:1 0 10rem; ";
+  leftcol.style = "flex:1 0 10rem; ";
 
   let middleCol = document.createElement("div");
   resultdiv.appendChild(middleCol);
@@ -329,7 +361,6 @@ function contactInfoForm() {
   resultdiv.className = "row";
   resultdiv.style = "display:flex; flex-wrap:wrap; gap:10px;";
 
-
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
   leftcol.className = " col-4 px-2";
@@ -493,7 +524,6 @@ function healthConcernsForm() {
   resultdiv.className = "row ";
   resultdiv.style = "display:flex; flex-wrap:wrap; gap:10px;";
 
-
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
   leftcol.className = " col-6 px-2";
@@ -580,7 +610,6 @@ function appointmentsForm() {
   resultdiv.className = "row ";
   resultdiv.style = "display:flex; flex-wrap:wrap; gap:10px;";
 
-
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
   leftcol.className = " col-5 px-2";
@@ -591,164 +620,163 @@ function appointmentsForm() {
   rightcol.className = " col-7 px-2";
   rightcol.style = " padding:2.2% 0 0 0; flex:1 0 10rem;  ";
 
-  var Doctors= [
+  var Doctors = [
     {
-        "specialty": "Audiologists",
-        "doctors": [
-            "Dr. Ashish Kumar",
-            "Dr. Kesh Chudry",
-            "Dr. Shalini Periaswamy",
-            "Dr. Subham Sarangi",
-            "Dr. Monica Chatterjee"
-        ]
+      specialty: "Audiologists",
+      doctors: [
+        "Dr. Ashish Kumar",
+        "Dr. Kesh Chudry",
+        "Dr. Shalini Periaswamy",
+        "Dr. Subham Sarangi",
+        "Dr. Monica Chatterjee",
+      ],
     },
     {
-        "specialty": "Cardiologists",
-        "doctors": [
-            "Dr. Bikram K Mohanty",
-            "Dr. Amit Malik",
-            "Dr. Ashish Chauhan",
-            "Dr. Sarita Gulati",
-            "Dr. Bipin Kumar Dubey"
-        ]
+      specialty: "Cardiologists",
+      doctors: [
+        "Dr. Bikram K Mohanty",
+        "Dr. Amit Malik",
+        "Dr. Ashish Chauhan",
+        "Dr. Sarita Gulati",
+        "Dr. Bipin Kumar Dubey",
+      ],
     },
     {
-        "specialty": "Cardiothoracic Surgeon",
-        "doctors": [
-            "Dr B N Das",
-            "Dr. Shanti Talwar",
-            "Dr Muthu Jothi",
-            "Dr. Ramesh Arora",
-            "Dr. M.r. Girinath"
-        ]
+      specialty: "Cardiothoracic Surgeon",
+      doctors: [
+        "Dr B N Das",
+        "Dr. Shanti Talwar",
+        "Dr Muthu Jothi",
+        "Dr. Ramesh Arora",
+        "Dr. M.r. Girinath",
+      ],
     },
     {
-        "specialty": "Dentist",
-        "doctors": [
-            "Dr. Vani Hegde",
-            "Dr. Anil Kohli",
-            "Dr. Shashi Bhushan Gupta",
-            "Dr. Kartik Mandal",
-            "Dr. Sonali Taneja"
-        ]
+      specialty: "Dentist",
+      doctors: [
+        "Dr. Vani Hegde",
+        "Dr. Anil Kohli",
+        "Dr. Shashi Bhushan Gupta",
+        "Dr. Kartik Mandal",
+        "Dr. Sonali Taneja",
+      ],
     },
     {
-        "specialty": "ENT Specialist",
-        "doctors": [
-            "Dr. E.V. Raman",
-            "Dr. EC Vinaya Kumar",
-            "Dr. P. L. Dhingra",
-            "Dr. Debashish Dutta Majumdar",
-            "Dr. Nagamani YS"
-        ]
+      specialty: "ENT Specialist",
+      doctors: [
+        "Dr. E.V. Raman",
+        "Dr. EC Vinaya Kumar",
+        "Dr. P. L. Dhingra",
+        "Dr. Debashish Dutta Majumdar",
+        "Dr. Nagamani YS",
+      ],
     },
     {
-        "specialty": "Endocrinologist",
-        "doctors": [
-            "Dr. Iyad Hassan",
-            "Dr. Jayashree Gopal",
-            "Dr Sivagnana Sundaram",
-            "Dr. Anoop Misra",
-            "Dr. Rajendiran N"
-        ]
+      specialty: "Endocrinologist",
+      doctors: [
+        "Dr. Iyad Hassan",
+        "Dr. Jayashree Gopal",
+        "Dr Sivagnana Sundaram",
+        "Dr. Anoop Misra",
+        "Dr. Rajendiran N",
+      ],
     },
     {
-        "specialty": "Gynecologist",
-        "doctors": [
-            "Dr. Aradhana Singh",
-            "Dr. Madhu Srivastava",
-            "Dr. Padmapriya Vivek",
-            "Dr. Monika Wadhwan",
-            "Dr. Neera Bhan"
-        ]
+      specialty: "Gynecologist",
+      doctors: [
+        "Dr. Aradhana Singh",
+        "Dr. Madhu Srivastava",
+        "Dr. Padmapriya Vivek",
+        "Dr. Monika Wadhwan",
+        "Dr. Neera Bhan",
+      ],
     },
     {
-        "specialty": "Neurologist",
-        "doctors": [
-            "Dr. Puneet Agarwal",
-            "Dr. Geetha Lakshmipathy",
-            "Dr. Anand Kumar Saxena",
-            "Dr. Mukul Varma",
-            "Dr. Praveen Gupta"
-        ]
+      specialty: "Neurologist",
+      doctors: [
+        "Dr. Puneet Agarwal",
+        "Dr. Geetha Lakshmipathy",
+        "Dr. Anand Kumar Saxena",
+        "Dr. Mukul Varma",
+        "Dr. Praveen Gupta",
+      ],
     },
     {
-        "specialty": "Oncologist",
-        "doctors": [
-            "Dr. Nandini Hazarika",
-            "Dr. Ian Pinto",
-            "Dr. Jayanti S Thumsi",
-            "Dr. Pramod Kumar Julka",
-            "Dr. Suresh Advani"
-        ]
+      specialty: "Oncologist",
+      doctors: [
+        "Dr. Nandini Hazarika",
+        "Dr. Ian Pinto",
+        "Dr. Jayanti S Thumsi",
+        "Dr. Pramod Kumar Julka",
+        "Dr. Suresh Advani",
+      ],
     },
     {
-        "specialty": "Orthopedic Surgeon",
-        "doctors": [
-            "Dr. Balvinder Rana",
-            "Dr. Ram Chidambaram",
-            "Dr. Yatinder Kharbanda",
-            "Dr. Jayant Arora",
-            "Dr. Narender Kumar Magu"
-        ]
+      specialty: "Orthopedic Surgeon",
+      doctors: [
+        "Dr. Balvinder Rana",
+        "Dr. Ram Chidambaram",
+        "Dr. Yatinder Kharbanda",
+        "Dr. Jayant Arora",
+        "Dr. Narender Kumar Magu",
+      ],
     },
     {
-        "specialty": "Paediatrician",
-        "doctors": [
-            "Dr. Jyotsna Kirtane",
-            "Dr. Deepika Gandhi",
-            "Dr. Subhash C Arya",
-            "Dr. Jyothi Raghuram",
-            "Dr. Lokesh Mahajan"
-        ]
+      specialty: "Paediatrician",
+      doctors: [
+        "Dr. Jyotsna Kirtane",
+        "Dr. Deepika Gandhi",
+        "Dr. Subhash C Arya",
+        "Dr. Jyothi Raghuram",
+        "Dr. Lokesh Mahajan",
+      ],
     },
     {
-        "specialty": "Psychiatrists",
-        "doctors": [
-            "Dr. Santosh Bangar",
-            "Dr. Manish Jain",
-            "Dr. P Raghuram Reddy",
-            "Dr. Puneet Dwevedi",
-            "Dr. Puneet Dwevedi",
-            "Dr. V.s.p. Bashyam"
-        ]
+      specialty: "Psychiatrists",
+      doctors: [
+        "Dr. Santosh Bangar",
+        "Dr. Manish Jain",
+        "Dr. P Raghuram Reddy",
+        "Dr. Puneet Dwevedi",
+        "Dr. Puneet Dwevedi",
+        "Dr. V.s.p. Bashyam",
+      ],
     },
     {
-        "specialty": "Radiologist",
-        "doctors": [
-            "Dr. Irene Faith Manoja",
-            "Dr. Nihar Ranjan Mohanty",
-            "Dr. Mugada Chandra Sekhar",
-            "Dr. Chaganti Rama Seshu",
-            "Dr. Polukonda Geetha Vani"
-        ]
+      specialty: "Radiologist",
+      doctors: [
+        "Dr. Irene Faith Manoja",
+        "Dr. Nihar Ranjan Mohanty",
+        "Dr. Mugada Chandra Sekhar",
+        "Dr. Chaganti Rama Seshu",
+        "Dr. Polukonda Geetha Vani",
+      ],
     },
     {
-        "specialty": "Pulmonologist",
-        "doctors": [
-            "Dr. Ashok Sengupta",
-            "Dr. Abhay Uppe",
-            "Dr. Manoj Kumar Goel",
-            "Dr. Nikhil Malhotra",
-            "Dr. Ankit Parakh"
-        ]
+      specialty: "Pulmonologist",
+      doctors: [
+        "Dr. Ashok Sengupta",
+        "Dr. Abhay Uppe",
+        "Dr. Manoj Kumar Goel",
+        "Dr. Nikhil Malhotra",
+        "Dr. Ankit Parakh",
+      ],
     },
     {
-        "specialty": "Veterinarian",
-        "doctors": [
-            "Dr. Rajesh Kumar Singh",
-            "Dr. R. Suresh Kumar",
-            "Dr. Anirudh Mittal",
-            "Dr. Karnati",
-            "Dr. Srinivas Pulpa"
-        ]
-    }
-];
+      specialty: "Veterinarian",
+      doctors: [
+        "Dr. Rajesh Kumar Singh",
+        "Dr. R. Suresh Kumar",
+        "Dr. Anirudh Mittal",
+        "Dr. Karnati",
+        "Dr. Srinivas Pulpa",
+      ],
+    },
+  ];
   // Specialists
   // Create input element
   const inPPASpecialist = document.createElement("select");
-  inPPASpecialist.className =
-    "mx-2 w-75 form-control form-select d-inline-block  ";
+  inPPASpecialist.className ="mx-2 w-75 form-control form-select d-inline-block  ";
   inPPASpecialist.id = "inpatient-appointment-specialist";
 
   const inPPASNone = document.createElement("option");
@@ -760,20 +788,20 @@ function appointmentsForm() {
   Doctors.forEach(Specialist);
   // function for Specialists
   function Specialist(x) {
-
-    let inPPASOptionsGroup=document.createElement("optgroup");
-    inPPASOptionsGroup.value=x.specialty;
-    inPPASOptionsGroup.label=x.specialty;
-    inPPASOptionsGroup.className="fs-5 fw-medium";
-    inPPASOptionsGroup.style="background-color: lightgray; ";
+    let inPPASOptionsGroup = document.createElement("optgroup");
+    inPPASOptionsGroup.value = x.specialty;
+    inPPASOptionsGroup.label = x.specialty;
+    inPPASOptionsGroup.className = "fs-5 fw-medium";
+    inPPASOptionsGroup.style = "background-color: lightgray; ";
     inPPASpecialist.appendChild(inPPASOptionsGroup);
 
     // console.log(x.specialty);
-    for(let i=0;i<x.doctors.length;i++){
-    let inPPASOptions = document.createElement("option");
-    inPPASOptions.value = x.doctors[i];
-    inPPASOptions.innerHTML = x.doctors[i];
-    inPPASpecialist.appendChild(inPPASOptions);
+    for (let i = 0; i < x.doctors.length; i++) {
+      let inPPASOptions = document.createElement("option");
+      inPPASOptions.value = x.specialty+" : "+x.doctors[i];
+      // inPPASOptions.parentlement=x.specialty;
+      inPPASOptions.innerHTML = x.doctors[i];
+      inPPASpecialist.appendChild(inPPASOptions);
     }
   }
 
@@ -820,7 +848,6 @@ function prescriptionForm() {
   resultdiv.className = "row ";
   // resultdiv.style="height: 380px;";
   resultdiv.style = "display:flex; flex-wrap:wrap; gap:10px;";
-
 
   let leftcol = document.createElement("div");
   resultdiv.appendChild(leftcol);
@@ -925,8 +952,8 @@ function prescriptionForm() {
     "Wegovy",
     "Wellbutrin",
     "Xanax",
-    "Zubsolv"
-];
+    "Zubsolv",
+  ];
   inPPPMedicines.sort();
   // console.log(inPPPMedicine);
   inPPPMedicines.forEach(medicine);
@@ -938,7 +965,7 @@ function prescriptionForm() {
     let inPPPMCBoxes = document.createElement("input");
     inPPPMCBoxes.type = "checkbox";
     inPPPMCBoxes.value = x;
-    inPPPMCBoxes.className = "mx-2 ";
+    inPPPMCBoxes.className = "mx-2 medicine-selector ";
     inPPPMCBoxes.id = "inPatient-prescription-medicine-" + x;
 
     let inPPPMCBLabels = document.createElement("label");
@@ -1018,7 +1045,7 @@ function prescriptionForm() {
     "Urine glucose",
     "Visual acuity",
     "aPTT (Activated partial thromboplastin time)",
-    "pH (Potential of Hydrogen)"
+    "pH (Potential of Hydrogen)",
   ];
 
   // inPPPTest.sort();
@@ -1032,7 +1059,7 @@ function prescriptionForm() {
     let inPPPTCBoxes = document.createElement("input");
     inPPPTCBoxes.type = "checkbox";
     inPPPTCBoxes.value = y;
-    inPPPTCBoxes.className = "mx-2 ";
+    inPPPTCBoxes.className = "mx-2 test-selector";
     inPPPTCBoxes.id = "inPatient-prescription-test-" + y;
 
     let inPPPTCBLabels = document.createElement("label");
@@ -1074,8 +1101,8 @@ function prescriptionForm() {
     "PET scan (Positron emission tomography scan)",
     "SPECT scan (Single-photon emission computed tomography scan)",
     "Ultrasound scan",
-    "X-ray"
-];
+    "X-ray",
+  ];
 
   // inPPPTest.sort();
   // console.log(inPPPMedicine);
@@ -1088,7 +1115,7 @@ function prescriptionForm() {
     let inPPPSCBoxes = document.createElement("input");
     inPPPSCBoxes.type = "checkbox";
     inPPPSCBoxes.value = z;
-    inPPPSCBoxes.className = "mx-2 ";
+    inPPPSCBoxes.className = "mx-2  scan-selector";
     inPPPSCBoxes.id = "inPatient-prescription-scan-" + z;
 
     let inPPPSCBLabels = document.createElement("label");
@@ -1126,56 +1153,40 @@ function inPPIDetailsSubmit() {
   let form = document.getElementById("inPatient-personalInfo-form");
   var inPPName = document.getElementById("inpatient-patient-name").value;
   var inPPAddress = document.getElementById("inpatient-patient-address").value;
-  var inPPMNumber = document.getElementById(
-    "inpatient-patient-phone-number"
-  ).value;
+  var inPPMNumber = document.getElementById("inpatient-patient-phone-number").value;
   var inPPDOB = document.getElementById("inpatient-patient-dOB").value;
   var inPPBG = document.getElementById("inpatient-patient-bg").value;
 
-  var isDeleted = false;
+  // var isDeleted = false;
+  InPatientDetails.hospitalPatientName=inPPName;
+  InPatientDetails.hospitalPatientAddress=inPPAddress;
+  InPatientDetails.hospitalPatientPhoneNumber=inPPMNumber;
+  InPatientDetails.hospitalPatientDob=inPPDOB;
+  InPatientDetails.hospitalPatientBloodGroup=inPPBG
 
-  const inPPDetailsObject = {
-    Patient_Name: inPPName,
-    Patient_Address: inPPAddress,
-    Patient_MN: inPPMNumber,
-    Patient_DOB: inPPDOB,
-    Patient_BG: inPPBG,
-    Patient_Deleted: isDeleted,
-  };
-
-  console.log(inPPDetailsObject);
-
-  //   if (localStorage.getItem("inPatientDetails") == null) {
-  //     let a = [];
-
-  //     a.push(inPPDetailsObject);
-  //     localStorage.setItem("inPatientDetails", JSON.stringify(a));
-  //     showIPDetails();
-  //   } else {
-  //     let inPatientDetails = JSON.parse(localStorage.getItem("inPatientDetails"));
-  //     inPatientDetails.push(inPPDetailsObject);
-
-  //     localStorage.setItem("inPatientDetails", JSON.stringify(inPatientDetails));
-  //     showIPDetails();
-  //   }
+  console.log(inPPName);
+  console.log(inPPAddress);
+  console.log(inPPMNumber);
+  console.log(inPPDOB);
+  console.log(inPPBG);
 
   form.reset();
+contactInfo();
 }
 
 function inPCIDetailsSubmit() {
   let form = document.getElementById("inPatient-contactInfo-form");
-  let inPAPNumber = document.getElementById(
-    "inpatient-patient-alternate-phone-number"
-  ).value;
+  let inPAPNumber = document.getElementById("inpatient-patient-alternate-phone-number").value;
   let inPEmail = document.getElementById("inpatient-patient-email-id").value;
-  let inPGName = document.getElementById(
-    "inpatient-patient-gaurdian-name"
-  ).value;
-  let inPGPNumber = document.getElementById(
-    "inpatient-gaurdian-phone-number"
-  ).value;
+  let inPGName = document.getElementById("inpatient-patient-gaurdian-name").value;
+  let inPGPNumber = document.getElementById("inpatient-gaurdian-phone-number").value;
   let inPGEmail = document.getElementById("inpatient-gaurdian-email-id").value;
 
+  InPatientDetails.hospitalPatientAlternateNumber = inPAPNumber;
+  InPatientDetails.hospitalPatientEmailid = inPEmail;
+  InPatientDetails.hospitalPatientGuardianName = inPGName;
+  InPatientDetails.hospitalPatientGuardianPhoneNumber = inPGPNumber;
+  InPatientDetails.hospitalPatientGuardianEmailid = inPGEmail;
   console.log(inPAPNumber);
   console.log(inPEmail);
   console.log(inPGName);
@@ -1183,50 +1194,123 @@ function inPCIDetailsSubmit() {
   console.log(inPGEmail);
 
   form.reset();
+  healthConcerns();
 }
 
 function inPHCDetailsSubmit() {
   let form = document.getElementById("inPatient-healthConcerns-form");
-  let inPPCProblems = document.getElementById(
-    "inpatient-current-problems"
-  ).value;
-  let inPPPProblems = document.getElementById(
-    "inpatient-previous-problems"
-  ).value;
+  let inPPCProblems = document.getElementById("inpatient-current-problems").value;
+  let inPPPProblems = document.getElementById("inpatient-previous-problems").value;
 
+  InPatientDetails.hospitalPatientCurrentProblem=inPPCProblems;
+  InPatientDetails.hospitalPatientPreviousProblem=inPPPProblems;
   console.log(inPPCProblems);
   console.log(inPPPProblems);
 
   form.reset();
+  appointments();
 }
 
 function inPADetailsSubmit() {
   let form = document.getElementById("inPatient-appointments-form");
+  let inPPASpecialist = document.getElementById("inpatient-appointment-specialist").value;
 
-  let inPPASpecialist = document.getElementById(
-    "inpatient-appointment-specialist"
-  ).value;
-  let inPPASDoctor = document.getElementById(
-    "inpatient-appointment-speciality-doctor"
-  ).value;
+    // // Get the selected option
+    // const selectedOption = inPPASpecialist.options[inPPASpecialist.selectedIndex];
+
+    // // Get the optgroup element of the selected option
+    // const optgroup = selectedOption.parentElement;
+
+    // // Get the value of the selected option
+    // const selectedValue = selectedOption.value;
+
+    // // Get the label of the optgroup
+    // const optgroupLabel = optgroup.label;
+
+    // // Log the selected value and optgroup label
+    // console.log('Selected Value:', selectedValue);
+    // console.log('Optgroup Label:', optgroupLabel);
 
   console.log(inPPASpecialist);
-  console.log(inPPASDoctor);
-
+  InPatientDetails.hospitalPatientDoctor=inPPASpecialist;
+ 
   form.reset();
+  prescription();
 }
 
 function inPPDetailsSubmit() {
   let form = document.getElementById("inPatient-prescription-form");
+  let submitBtn= document.getElementById("inPatient-prescription-submitBtn");
+   
+  let checkedMedicine = "";
+  let checkedTests = "";
+  let checkedScans = "";
+
+   // Loop through checkboxes in medicine div
+   document.querySelectorAll(".medicine-selector").forEach(function(checkbox) {
+       if (checkbox.checked) {
+          //  checkedMedicine.push(checkbox.value);
+          checkedMedicine +=checkbox.value+", ";
+       }
+   });
+
+   // Loop through checkboxes in tests div
+   document.querySelectorAll(".test-selector").forEach(function(checkbox) {
+       if (checkbox.checked) {
+          //  checkedTests.push(checkbox.value);
+          checkedTests +=checkbox.value+", ";
+       }
+   });
+
+   // Loop through checkboxes in scans div
+   document.querySelectorAll(".scan-selector").forEach(function(checkbox) {
+       if (checkbox.checked) {
+          //  checkedScans.push(checkbox.value);
+          checkedScans +=checkbox.value+", ";
+       }
+   });
+
+   InPatientDetails.hospitalPatientMedicine=checkedMedicine;
+   InPatientDetails.hospitalPatientTest=checkedTests;
+   InPatientDetails.hospitalPatientScan=checkedScans;
+
+   console.log(checkedMedicine);
+   console.log(checkedTests);
+   console.log(checkedScans);
+   console.log(InPatientDetails);
+   
+   postCall(InPatientDetails,"http://localhost:8080/Hospital/savePatientsTable",submitBtn);
 
   form.reset();
+  checkedMedicine="";
+  checkedTests="";
+  checkedScans="";
+  console.log("cleaning the data .......");
+  InPatientDetails={};
 }
 
-// InPatientDetails Array
-var inPDetails = JSON.parse(localStorage.getItem("inPatientDetails"));
+function postCall(obj,url,btn){
+  
+  let data = JSON.stringify(obj);
+      var rqst = new XMLHttpRequest();
+      rqst.open("POST", url);
+      rqst.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+      rqst.send(data);
+
+      rqst.onload = function () {
+        if (rqst.status === 201) {
+          console.log("Post Call Successfull !!!");
+          btn.style="display:none;";
+         }else{
+          localStorage.setItem("inPatientDetails" , data);
+         }
+  };
+}
+
 console.log(inPDetails);
 
 function showIPDetails() {
+
   var inPPDTHRDetails = [
     "Patient ID",
     "Patient Name",
@@ -1235,123 +1319,99 @@ function showIPDetails() {
     "Actions",
   ];
 
-  //   console.log(inPDetails);
+    {
+    var inPBCDiv = document.getElementById("bottom-div-content");
+    inPBCDiv.innerHTML = " ";
+    inPBCDiv.className = "px-3 py-3";
 
-  var inPBCDiv = document.getElementById("bottom-div-content");
-  inPBCDiv.innerHTML = "Load the InPatient Details using API's  ";
+    let inPPIBCDiv = document.createElement("div");
+    inPBCDiv.appendChild(inPPIBCDiv);
+    inPBCDiv.className="showData-scroll h-100 py-1";
 
-  //   {
-  //   var inPBCDiv = document.getElementById("bottom-div-content");
-  //   inPBCDiv.innerHTML = " ";
-  //   inPBCDiv.className = "px-3 py-3";
+    let inPPDTable = document.createElement("table");
+    inPPDTable.className = "w-100";
 
-  //   let inPPIBCDiv = document.createElement("div");
-  //   inPBCDiv.appendChild(inPPIBCDiv);
+  let headRow = document.createElement("tr");
+  for(let x=0; x<inPPDTHRDetails.length;x++){
+    let th= document.createElement("th");
+    th.innerHTML= inPPDTHRDetails[x];
+    headRow.appendChild(th);
+  }
+    inPPIBCDiv.appendChild(inPPDTable);
 
-  //   let inPPDTable = document.createElement("table");
-  //   inPPDTable.className = "w-100";
+    let tBody = document.createElement("tbody");
+    tBody.appendChild(headRow);
+    inPPDTable.appendChild(tBody);
 
-  //   let headRow = document.createElement("tr");
+    for (let i = 0; i < inPDetails.length; i++) {
+      if (inPDetails[i].hospitalPatientType == "IN") {
+        let bodyRows = document.createElement("tr");
+        //   bodyRows.className = "w-100";
 
-  //   let th1 = document.createElement("th");
-  //   th1.innerText = inPPDTHRDetails[0];
-  //   let th2 = document.createElement("th");
-  //   th2.innerHTML = inPPDTHRDetails[1];
-  //   let th3 = document.createElement("th");
-  //   th3.innerHTML = inPPDTHRDetails[2];
-  //   let th4 = document.createElement("th");
-  //   th4.innerHTML = inPPDTHRDetails[3];
-  //   let th5 = document.createElement("th");
-  //   th5.innerHTML = inPPDTHRDetails[4];
+        let td1 = document.createElement("td");
+        td1.innerHTML = "IP00" + inPDetails[i].hospitalPatientId;
+        //   td1.style = " width:10%; ";
+        let td2 = document.createElement("td");
+        td2.innerHTML = inPDetails[i].hospitalPatientName;
+        //   td2.style = "width:10%; ";
+        let td3 = document.createElement("td");
+        td3.innerHTML = inPDetails[i].hospitalPatientPhoneNumber;
+        //   td3.style = " width:10%; ";
+        let td4 = document.createElement("td");
+        td4.innerHTML = inPDetails[i].hospitalPatientType;
+        //   td4.style = " width:10%; ";
+        let td5 = document.createElement("td");
+        //   td5.style = " width:30%; ";
 
-  //   headRow.appendChild(th1);
-  //   headRow.appendChild(th2);
-  //   headRow.appendChild(th3);
-  //   headRow.appendChild(th4);
-  //   headRow.appendChild(th5);
+        // View Btn
+        let viewBtn = document.createElement("button");
+        viewBtn.className ="btn  text-center w-25 me-2 h-25 btn-outline-success bg-success p-1";
+        viewBtn.onclick = function () {
+          inPDView(inPDetails[i]);
+        };
+        let viewIcon = document.createElement("i");
+        viewIcon.className = "bi bi-eye-fill text-white ";
+        viewIcon.style = "font-size:25px; ";
 
-  //   // inPPDTable.appendChild(headRow);
-  //   inPPIBCDiv.appendChild(inPPDTable);
+        // Edit Btn
+        let editBtn = document.createElement("button");
+        editBtn.className ="btn  text-center w-25 h-25 me-2 btn-outline-primary bg-primary p-1";
 
-  //   let tBody = document.createElement("tbody");
-  //   tBody.appendChild(headRow);
-  //   inPPDTable.appendChild(tBody);
+        // editBtn.addEventListener('click' , inPDEdit(inPDetails[i]));
+        editBtn.onclick = function () {
+          inPDEdit(inPDetails[i]);
+        };
 
-  //   for (let i = 0; i < inPDetails.length; i++) {
-  //     if (inPDetails[i].Patient_Deleted == false) {
-  //       let bodyRows = document.createElement("tr");
-  //       //   bodyRows.className = "w-100";
+        let editIcon = document.createElement("i");
+        editIcon.className = "bi bi-pencil-square text-white ";
+        editIcon.style = "font-size:25px; ";
 
-  //       let td1 = document.createElement("td");
-  //       td1.innerHTML = "IP00" + i;
-  //       //   td1.style = " width:10%; ";
-  //       let td2 = document.createElement("td");
-  //       td2.innerHTML = inPDetails[i].Patient_Name;
-  //       //   td2.style = "width:10%; ";
-  //       let td3 = document.createElement("td");
-  //       td3.innerHTML = inPDetails[i].Patient_MN;
-  //       //   td3.style = " width:10%; ";
-  //       let td4 = document.createElement("td");
-  //       td4.innerHTML = "IN";
-  //       //   td4.style = " width:10%; ";
-  //       let td5 = document.createElement("td");
-  //       //   td5.style = " width:30%; ";
+        // Delete Btn
+        let deleteBtn = document.createElement("button");
+        deleteBtn.className ="btn  text-center w-25 h-25 btn-outline-danger bg-danger p-1";
+        deleteBtn.onclick = function () {
+          inPDDelete(inPDetails[i]);
+        };
+        let deleteIcon = document.createElement("i");
+        deleteIcon.className = "bi bi-trash-fill text-white ";
+        deleteIcon.style = "font-size:25px; ";
 
-  //       // View Btn
-  //       let viewBtn = document.createElement("button");
-  //       viewBtn.className =
-  //         "btn  text-center w-25 me-2 h-25 btn-outline-success bg-success p-1";
-  //       viewBtn.onclick = function () {
-  //         inPDView(inPDetails[i]);
-  //       };
-  //       let viewIcon = document.createElement("i");
-  //       viewIcon.className = "bi bi-eye-fill text-white ";
-  //       viewIcon.style = "font-size:25px; ";
+        viewBtn.appendChild(viewIcon);
+        editBtn.appendChild(editIcon);
+        deleteBtn.appendChild(deleteIcon);
 
-  //       // Edit Btn
-  //       let editBtn = document.createElement("button");
-  //       editBtn.className =
-  //         "btn  text-center w-25 h-25 me-2 btn-outline-primary bg-primary p-1";
-
-  //       // editBtn.addEventListener('click' , inPDEdit(inPDetails[i]));
-  //       editBtn.onclick = function () {
-  //         inPDEdit(inPDetails[i]);
-  //       };
-
-  //       let editIcon = document.createElement("i");
-  //       editIcon.className = "bi bi-pencil-square text-white ";
-  //       editIcon.style = "font-size:25px; ";
-
-  //       // Delete Btn
-  //       let deleteBtn = document.createElement("button");
-  //       deleteBtn.className =
-  //         "btn  text-center w-25 h-25 btn-outline-danger bg-danger p-1";
-  //       deleteBtn.onclick = function () {
-  //         inPDDelete(inPDetails[i]);
-  //       };
-  //       let deleteIcon = document.createElement("i");
-  //       deleteIcon.className = "bi bi-trash-fill text-white ";
-  //       deleteIcon.style = "font-size:25px; ";
-
-  //       viewBtn.appendChild(viewIcon);
-  //       editBtn.appendChild(editIcon);
-  //       deleteBtn.appendChild(deleteIcon);
-
-  //       td5.appendChild(viewBtn);
-  //       td5.appendChild(editBtn);
-  //       td5.appendChild(deleteBtn);
-
-  //       bodyRows.appendChild(td1);
-  //       bodyRows.appendChild(td2);
-  //       bodyRows.appendChild(td3);
-  //       bodyRows.appendChild(td4);
-  //       bodyRows.appendChild(td5);
-
-  //       tBody.appendChild(bodyRows);
-  //     }
-  //   }
-
-  // }
+        td5.appendChild(viewBtn);
+        td5.appendChild(editBtn);
+        td5.appendChild(deleteBtn);
+        bodyRows.appendChild(td1);
+        bodyRows.appendChild(td2);
+        bodyRows.appendChild(td3);
+        bodyRows.appendChild(td4);
+        bodyRows.appendChild(td5);
+        tBody.appendChild(bodyRows);
+      }
+    }
+  }
 }
 
 // function for InPatient Details Edit Button
@@ -1364,11 +1424,11 @@ function inPDEdit(param) {
   let inPPDOBEdit = document.getElementById("inpatient-patient-dOB");
   let inPPBGEdit = document.getElementById("inpatient-patient-bg");
 
-  inPPNEdit.value = param.Patient_Name;
-  inPPAEdit.value = param.Patient_Address;
-  inPPMNEdit.value = param.Patient_MN;
-  inPPDOBEdit.value = param.Patient_DOB;
-  inPPBGEdit.value = param.Patient_BG;
+  inPPNEdit.value = param.hospitalPatientName;
+  inPPAEdit.value = param.hospitalPatientAddress;
+  inPPMNEdit.value = param.hospitalPatientPhoneNumber;
+  inPPDOBEdit.value = param.hospitalPatientDob;
+  inPPBGEdit.value = param.hospitalPatientBloodGroup;
 }
 
 function inPDDelete(param) {
@@ -1380,67 +1440,25 @@ function inPDView(param) {
   contentDiv.innerHTML = " ";
 
   let viewDiv = document.createElement("div");
-  viewDiv.className = "w-100 ";
+  viewDiv.className = "w-100  h-50 ";
 
   let uPList = document.createElement("ul");
-
-  let liPID = document.createElement("li");
-  liPID.innerHTML = "Patient ID : ";
-
-  let spanPID = document.createElement("span");
-  spanPID.textContent = "IP";
-  spanPID.className = " ms-2 ";
-
-  let liPN = document.createElement("li");
-  liPN.innerHTML = "Patient Name : ";
-
-  let spanPN = document.createElement("span");
-  spanPN.textContent = param.Patient_Name;
-  spanPN.className + " ms-2 ";
-
-  let liPAge = document.createElement("li");
-  liPAge.innerHTML = "Patient Age : ";
-
-  let spanPAge = document.createElement("span");
-  spanPAge.textContent = getAge(param.Patient_DOB);
-  spanPAge.className = " ms-2 ";
-
-  let liPMN = document.createElement("li");
-  liPMN.innerHTML = "Patient M-No : ";
-
-  let spanPMN = document.createElement("span");
-  spanPMN.textContent = param.Patient_MN;
-  spanPMN.className = " ms-2 ";
-
-  let liPBG = document.createElement("li");
-  liPBG.innerHTML = "Patient Blood Group : ";
-
-  let spanPBG = document.createElement("span");
-  spanPBG.textContent = param.Patient_BG + ".";
-  spanPBG.className = "ms-2 ";
-
-  let liPA = document.createElement("li");
-  liPA.innerHTML = "Patient Address : ";
-
-  let spanPA = document.createElement("span");
-  spanPA.textContent = param.Patient_Address + ".";
-  spanPA.className = "ms-2 ";
-
-  liPID.appendChild(spanPID);
-  uPList.appendChild(liPID);
-  liPN.appendChild(spanPN);
-  uPList.appendChild(liPN);
-  liPAge.appendChild(spanPAge);
-  uPList.appendChild(liPAge);
-  liPMN.appendChild(spanPMN);
-  uPList.appendChild(liPMN);
-  liPBG.appendChild(spanPBG);
-  uPList.appendChild(liPBG);
-  liPA.appendChild(spanPA);
-  uPList.appendChild(liPA);
+  uPList.className="showData-scroll "
+  let keys=Object.keys(param);
+  console.log(keys);
+  let values=Object.values(param);
+  console.log(values);
+  for(let key in param ){
+    let li=document.createElement("li");
+    li.innerHTML=key+" : "; 
+    let span =document.createElement("span");
+    span.innerHTML=" "+param[key];
+    span.className="ms-2 ";
+    li.appendChild(span);
+    uPList.appendChild(li);
+  }
 
   viewDiv.appendChild(uPList);
-
   contentDiv.appendChild(viewDiv);
 }
 
@@ -1460,3 +1478,5 @@ function getAge(dob) {
   // Return the age
   return age;
 }
+}
+};
