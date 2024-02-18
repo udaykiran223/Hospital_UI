@@ -1,5 +1,5 @@
-let getURL="http://192.168.29.90:8080/Hospital/getAllPatientsTableData";
-let postURL="http://192.168.29.90:8080/Hospital/savePatientsTable";
+let getURL="http://localhost:8080/Hospital/getAllPatientsTableData";
+let postURL="http://localhost:8080/Hospital/savePatientsTable";
 var PatientID=1;
 displayPermPatient();
 function displayPermPatient(){
